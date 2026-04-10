@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.app-container {
+    background-color: #ffffff;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #2c3e50;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.score-board {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #2980b9;
+}
+
+.question-header h2 {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.audio-section {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.audio-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.audio-btn:hover {
+    background-color: #2980b9;
+}
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.option-btn {
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    padding: 16px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.option-btn:hover:not(:disabled) {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+}
+
+.option-btn:disabled {
+    cursor: not-allowed;
+}
+
+/* Color Flashing Logic */
+.option-btn.correct {
+    background-color: #d4edda !important;
+    border-color: #28a745 !important;
+    color: #155724 !important;
+}
+
+.option-btn.incorrect {
+    background-color: #f8d7da !important;
+    border-color: #dc3545 !important;
+    color: #721c24 !important;
+}
+
+.action-section {
+    text-align: center;
+}
+
+.next-btn, .restart-btn {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.next-btn:hover, .restart-btn:hover {
+    background-color: #27ae60;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#completion-area {
+    text-align: center;
+    padding: 40px 0;
+}
