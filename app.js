@@ -1,51 +1,44 @@
-// ==========================================
-// 3. CORE LOGIC
-// ==========================================
-
-// Global variable to lock in the Turkish voice
-let turkishVoice = null;
-
-// Function to force the browser to find the Turkish voice
-function preloadTurkishVoice() {
-    const voices = window.speechSynthesis.getVoices();
-    // Look for any voice where the language code contains 'tr' (like tr-TR)
-    turkishVoice = voices.find(voice => voice.lang.includes('tr'));
-}
-
-// Browsers load voices asynchronously. This event listener catches them when they are ready.
-window.speechSynthesis.onvoiceschanged = preloadTurkishVoice;
-
-// Run it once immediately just in case they are already loaded
-preloadTurkishVoice();
+// Add this at the top of your Core Logic section to prevent Safari from deleting the audio
+let currentUtterance = null; 
 
 function playTurkishAudio(text) {
+    console.log("1. Button clicked! Attempting to say:", text);
+
     if (!('speechSynthesis' in window)) {
+        console.error("Error: Browser does not support Speech Synthesis.");
         alert("Sorry, your browser does not support text-to-speech.");
         return;
     }
 
-    // Cancel any stuck audio
+    // Clear any stuck background audio
     window.speechSynthesis.cancel();
     
-    const utterance = new SpeechSynthesisUtterance(text);
+    // Create the new audio and lock it in the global variable
+    currentUtterance = new SpeechSynthesisUtterance(text);
+    currentUtterance.lang = 'tr-TR'; 
+    currentUtterance.rate = 0.9; 
     
-    // Explicitly set the language tag
-    utterance.lang = 'tr-TR'; 
-    utterance.rate = 0.9; 
+    // Search for the Turkish voice
+    const voices = window.speechSynthesis.getVoices();
+    const turkishVoice = voices.find(voice => voice.lang.includes('tr'));
     
-    // Attach the actual Turkish voice object if we found it
     if (turkishVoice) {
-        utterance.voice = turkishVoice;
+        console.log("2. Found Turkish voice:", turkishVoice.name);
+        currentUtterance.voice = turkishVoice;
     } else {
-        // Fallback: try one last time to find it right before speaking
-        const voices = window.speechSynthesis.getVoices();
-        const lastSecondVoice = voices.find(voice => voice.lang.includes('tr'));
-        if (lastSecondVoice) {
-            utterance.voice = lastSecondVoice;
-        }
+        console.warn("2. WARNING: No Turkish voice found. Using default.");
     }
     
-    window.speechSynthesis.speak(utterance);
-}
+    // Track any errors that happen during playback
+    currentUtterance.onerror = function(event) {
+        console.error("3. PLAYBACK ERROR:", event.error);
+    };
 
-// ... keep your initLesson, loadQuestion, checkAnswer, etc. exactly the same below this line ...
+    currentUtterance.onstart = function() {
+        console.log("3. Audio has started playing successfully.");
+    };
+
+    // Send the command to play
+    window.speechSynthesis.speak(currentUtterance);
+    console.log("Command sent to the browser.");
+}
