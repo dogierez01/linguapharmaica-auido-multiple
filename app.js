@@ -1,44 +1,45 @@
-// Add this at the top of your Core Logic section to prevent Safari from deleting the audio
-let currentUtterance = null; 
+let currentUtterance = null;
 
 function playTurkishAudio(text) {
-    console.log("1. Button clicked! Attempting to say:", text);
+    console.log("1. Chrome button clicked! Text:", text);
 
     if (!('speechSynthesis' in window)) {
-        console.error("Error: Browser does not support Speech Synthesis.");
         alert("Sorry, your browser does not support text-to-speech.");
         return;
     }
 
-    // Clear any stuck background audio
+    // Chrome Bug Fix: Brutally clear any stuck audio in the background queue
     window.speechSynthesis.cancel();
     
-    // Create the new audio and lock it in the global variable
     currentUtterance = new SpeechSynthesisUtterance(text);
     currentUtterance.lang = 'tr-TR'; 
     currentUtterance.rate = 0.9; 
     
-    // Search for the Turkish voice
+    // Find voices
     const voices = window.speechSynthesis.getVoices();
-    const turkishVoice = voices.find(voice => voice.lang.includes('tr'));
     
-    if (turkishVoice) {
-        console.log("2. Found Turkish voice:", turkishVoice.name);
-        currentUtterance.voice = turkishVoice;
+    // Chrome prioritizes its own "Google" voices. Let's look for that first.
+    const googleVoice = voices.find(voice => voice.name === 'Google Türkçe' || voice.name.includes('Google') && voice.lang.includes('tr'));
+    // Fallback to the Mac voice just in case
+    const macVoice = voices.find(voice => voice.lang.includes('tr'));
+    
+    if (googleVoice) {
+        console.log("2. Success: Using Google Türkçe voice.");
+        currentUtterance.voice = googleVoice;
+    } else if (macVoice) {
+        console.log("2. Using Mac system Turkish voice.");
+        currentUtterance.voice = macVoice;
     } else {
-        console.warn("2. WARNING: No Turkish voice found. Using default.");
+        console.warn("2. WARNING: Chrome cannot find any Turkish voice!");
     }
     
-    // Track any errors that happen during playback
     currentUtterance.onerror = function(event) {
-        console.error("3. PLAYBACK ERROR:", event.error);
+        console.error("3. CHROME PLAYBACK ERROR:", event.error);
     };
 
     currentUtterance.onstart = function() {
-        console.log("3. Audio has started playing successfully.");
+        console.log("3. Audio is playing...");
     };
 
-    // Send the command to play
     window.speechSynthesis.speak(currentUtterance);
-    console.log("Command sent to the browser.");
 }
