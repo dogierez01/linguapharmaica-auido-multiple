@@ -244,55 +244,57 @@ Object.keys(lessonsData).forEach(key => {
 });
 
 // ==========================================
-// 3. CORE LOGIC (Fixed Audio Engine with Failsafe)
+// 3. CORE LOGIC (Ghost Audio Fetch & Randomization)
 // ==========================================
 
 const audioPlayer = new Audio();
 
-function playTurkishAudio(text) {
-    // 1. Reset any playing audio
+// Use an async fetch function to completely hide the request origin from Google
+async function playTurkishAudio(text) {
     audioPlayer.pause();
     audioPlayer.currentTime = 0;
     
-    // 2. Use the "gtx" developer endpoint to bypass browser blocks
-    const encodedText = encodeURIComponent(text);
-    const googleTranslateUrl = `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=tr&q=${encodedText}`;
-    
-    audioPlayer.src = googleTranslateUrl;
-    
-    // 3. Play the audio, but catch ANY errors (like Chrome blocking it)
-    audioPlayer.play().catch(error => {
-        console.warn("Google Audio Blocked, using Fallback System:", error);
+    try {
+        const encodedText = encodeURIComponent(text);
+        const googleUrl = `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=tr&q=${encodedText}`;
+        
+        // This is the magic key: 'no-referrer' forces Google to accept the request
+        const response = await fetch(googleUrl, { referrerPolicy: 'no-referrer' });
+        
+        if (!response.ok) throw new Error("Google blocked the stealth request.");
+        
+        // Convert the clean response into a playable audio file
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        
+        audioPlayer.src = audioUrl;
+        await audioPlayer.play();
+        
+    } catch (error) {
+        console.warn("Ghost Audio Failed, using Fallback System:", error);
         playFallbackAudio(text);
-    });
+    }
 }
 
-// 4. The Safety Net: If the network audio fails, play the built-in system voice immediately
+// Fallback System just in case
 function playFallbackAudio(text) {
     if (!('speechSynthesis' in window)) return;
-    
-    window.speechSynthesis.cancel(); // Clear any invisible jams
+    window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'tr-TR'; 
-    utterance.rate = 0.9;
-    
-    const voices = window.speechSynthesis.getVoices();
-    const turkishVoice = voices.find(voice => voice.lang.includes('tr'));
-    if (turkishVoice) {
-        utterance.voice = turkishVoice;
-    }
-    
+    utterance.rate = 0.85; // Slowed down slightly to make it clearer
     window.speechSynthesis.speak(utterance);
 }
 
-// Load voices into memory just in case the fallback is needed
-window.speechSynthesis.onvoiceschanged = function() {
-    window.speechSynthesis.getVoices();
-};
-
 function initLesson() {
     const selectedLessonId = lessonSelect.value;
-    currentLesson = lessonsData[selectedLessonId];
+    
+    // Create a fresh copy of the lesson data
+    currentLesson = [...lessonsData[selectedLessonId]];
+    
+    // SHUFFLE the questions instantly every time the lesson loads
+    shuffleArray(currentLesson);
+    
     currentQuestionIndex = 0;
     score = 0;
     scoreDisplay.innerText = score;
@@ -310,7 +312,7 @@ function loadQuestion() {
     playAudioBtn.onclick = () => playTurkishAudio(question.tr);
     
     const allOptions = [question.correct, ...question.fakes];
-    shuffleArray(allOptions);
+    shuffleArray(allOptions); // Shuffles the multiple-choice buttons
     
     optionsContainer.innerHTML = '';
     nextBtn.classList.add('hidden');
@@ -327,7 +329,6 @@ function loadQuestion() {
 
 function checkAnswer(selectedBtn, isCorrect, correctText) {
     const allButtons = document.querySelectorAll('.option-btn');
-    
     allButtons.forEach(btn => btn.disabled = true);
     
     if (isCorrect) {
@@ -342,7 +343,6 @@ function checkAnswer(selectedBtn, isCorrect, correctText) {
             }
         });
     }
-    
     nextBtn.classList.remove('hidden');
 }
 
@@ -361,6 +361,7 @@ function showCompletion() {
     finalScoreDisplay.innerText = `${score} / ${currentLesson.length}`;
 }
 
+// Utility Function to randomize arrays (used for both questions and buttons)
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
