@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Practice App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>English Practice</h1>
+            <div class="controls">
+                <select id="lesson-select">
+                    <option value="lesson1">Lesson 1</option>
+                    <option value="lesson2">Lesson 2</option>
+                    </select>
+                <div class="score-board">Score: <span id="score">0</span></div>
+            </div>
+        </header>
+
+        <main id="quiz-area">
+            <div class="question-header">
+                <h2 id="question-counter">Question 1 of X</h2>
+                <p>Listen to the Turkish phrase and select the correct English translation:</p>
+            </div>
+
+            <div class="audio-section">
+                <button id="play-audio-btn" class="audio-btn">🔊 Play Turkish Audio</button>
+            </div>
+
+            <div id="options-container" class="options-grid">
+                </div>
+
+            <div class="action-section">
+                <button id="next-btn" class="next-btn hidden">Next Question ➡️</button>
+            </div>
+        </main>
+
+        <div id="completion-area" class="hidden">
+            <h2>🎉 Lesson Complete!</h2>
+            <p>Your final score is: <span id="final-score"></span></p>
+            <button id="restart-btn" class="restart-btn">Restart Lesson</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
