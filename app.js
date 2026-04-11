@@ -1,86 +1,113 @@
 const fullData = {
-    "lesson1": {
-        "sentences": ["Taksi çağırdılar.", "Modemi tamir edecek misin?", "Kapıyı kapatmadı.", "Pizza yemem.", "Parayı sayar mısın?", "Telefonu tamir edecek mi?", "Anahtarları unuttular mı?", "Kilidi açmayacak.", "Araba satmayacağız.", "Yemek getirmeyeceksin.", "Belgeleri inceledik.", "Öğrencileri sayarsın.", "Kahvaltı hazırlayacak mı?", "Müşteri gömleği geri verdi.", "Pilot uçağı kontrol edecek.", "Hemşire kan almadı.", "Müdür hataları saydı.", "Polis arabaları durduracak.", "Modemi kontrol ederler.", "Şifreyi değiştirecek miyiz?"],
-        "answers": ["They called a taxi.", "Will you repair the modem?", "He didn't close the door.", "I don't eat pizza.", "Will you count the money?", "Will he repair the phone?", "Did they forget the keys?", "He will not open the lock.", "We will not sell the car.", "You will not bring food.", "We examined the documents.", "You count the students.", "Will he prepare breakfast?", "The customer gave the shirt back.", "The pilot will control the plane.", "The nurse didn't take blood.", "The manager counted the errors.", "The police will stop the cars.", "They control the modem.", "Will we change the password?"]
-    },
-    "lesson2": {
-        "sentences": ["Pilot uçağı ne zaman kontrol etti?", "Ne kadar para harcayacaksın?", "Anahtarı nerede tutarsın?", "Arabasını neden sattı?", "Kimin teknesini kiralayacaklar?", "Kaç hata buldun?", "Doktor neyi kontrol etti?", "Arabasını nereye park etti?", "Neyi unuttun?", "Bugün kaç müşteri aradı?", "Polis arabaları neden durdurur?", "Ne kadar kahve içersin?", "Ne kadar şeker koydu?", "Şifreyi neden değiştireceksin?", "Kimin şifresini kullanırsın?"],
-        "answers": ["When did the pilot control the plane?", "How much money will you spend?", "Where do you keep the key?", "Why did he sell his car?", "Whose boat will they rent?", "How many errors did you find?", "What did the doctor control?", "Where did he park his car?", "What did you forget?", "How many customers called today?", "Why do the police stop the cars?", "How much coffee do you drink?", "How much sugar did he put?", "Why will you change the password?", "Whose password do you use?"]
-    },
-    "lesson3": {
-        "sentences": ["Hiç süt yok.", "Hiç paramız yok.", "Zamanı olmayacak.", "Bir kaza oldu.", "Hiç ışık yoktu.", "Bir toplantı olacak.", "Paraları vardı.", "Hiç kahve var mı?", "Hiç çay var mıydı?", "Bir toplantı olacak mı?", "Müşterilerimiz var.", "Arabası vardı.", "Hiç zamanın olmayacak.", "Hiç kahven yoktu.", "Bir sorunumuz vardı.", "Arabalar olacak.", "Araban var mı?", "Evi yoktu."],
-        "answers": ["There is no milk.", "We have no money.", "There will be no time.", "An accident happened.", "There was no light.", "There will be a meeting.", "They had money.", "Is there any coffee?", "Was there any tea?", "Will there be a meeting?", "We have customers.", "He had a car.", "You will have no time.", "You had no coffee.", "We had a problem.", "There will be cars.", "Do you have a car?", "He had no house."]
-    },
-    "lesson4": {
-        "sentences": ["Biri ambulansı aradı mı?", "Her şeyi yemeyiz.", "Toplantıda hiç kimse yoktu.", "Ofiste biri var mı?", "New York'ta hiç kimsemiz yok.", "Her şeyi öğrendi.", "Hiçbir yerde parti yok.", "Sırtında bir şey vardı.", "Herkes numarayı öğrenecek.", "Hiç kimseye güvenmem.", "Biri kilidi değiştirecek.", "Belgede bir şey vardı.", "Herkesin bir şifresi olacak.", "Bir şey yedin mi?", "Hiç kimse öğrencileri uyarmadı.", "Arabayı bir yere park ettik.", "Hiç kimseyi aramadı.", "Aklında bir şey var mı?", "Herkesi aramadık.", "Hiç kimse modemi açmayacak."],
-        "answers": ["Did someone call the ambulance?", "We don't eat everything.", "There was nobody at the meeting.", "Is there someone in the office?", "We have nobody in New York.", "He learned everything.", "There is no party anywhere.", "There was something on his back.", "Everyone will learn the number.", "I don't trust anyone.", "Someone will change the lock.", "There was something in the document.", "Everyone will have a password.", "Did you eat something?", "Nobody warned the students.", "We parked the car somewhere.", "He didn't call anyone.", "Is there something on your mind?", "We didn't call everyone.", "Nobody will turn on the modem."]
-    },
-    "lesson5": {
-        "sentences": ["Öğrenci parayı sayabilir mi?", "Biri kapıyı açabilir mi?", "Hemşire makineyi tamir edemez.", "Herkes bilet alabilecek mi?", "Hiç kimse arabayı satamaz.", "Polis birini gönderebilir mi?", "Pilot uçağı uçuramadı.", "Öğretmen her şeyi öğretebilecek mi?", "Hiçbir şeye dokunmadık.", "Bir şey alabilir miyim?", "Öğrenci kitabı bitirebilecek mi?", "Biri parayı sayabildi mi?", "Hiç kimse kutuyu açamayacak.", "Hemşire kan alabilir mi?", "Polis trafiği durdurabildi mi?", "Herkes mesaj gönderebilir.", "Pilot kapıyı kapatamadı.", "Öğretmen bir şey alacak mı?", "Hiç kimse bilgisayara dokunamaz.", "Öğrenci ödevi verebilecek mi?"],
-        "answers": ["Can the student count the money?", "Can someone open the door?", "The nurse cannot repair the machine.", "Will everyone be able to buy a ticket?", "Nobody can sell the car.", "Can the police send someone?", "The pilot could not fly the plane.", "Will the teacher be able to teach everything?", "We didn't touch anything.", "Can I buy something?", "Will the student be able to finish the book?", "Could someone count the money?", "Nobody will be able to open the box.", "Can the nurse take blood?", "Could the police stop the traffic?", "Everyone can send a message.", "The pilot could not close the door.", "Will the teacher buy something?", "Nobody can touch the computer.", "Will the student be able to give the homework?"]
-    },
-    "lesson6": {
-        "sentences": ["Öğrenciler parayı saymak zorunda mı?", "Biri kapıyı açmak zorunda kaldı mı?", "Hemşireler makineyi tamir etmek zorunda değil.", "Herkes bilet almak zorunda kalacak mı?", "Hiç kimse arabayı satmak zorunda kalmadı.", "Polis birini göndermek zorunda kaldı mı?", "Pilotlar uçağı uçurmak zorunda kalmadı.", "Öğretmenler her şeyi öğretmek zorunda kalacak mı?", "Hiçbir şeye dokunmak zorunda kalmadık.", "Bir şey almak zorunda mıyım?", "Öğrenciler kitabı bitirmek zorunda kalacak mı?", "Biri parayı saymak zorunda kaldı mı?", "Hiç kimse kutuyu açmak zorunda kalmayacak.", "Hemşireler kan almak zorunda kaldı mı?", "Polis trafiği durdurmak zorunda kaldı mı?", "Herkes mesaj göndermek zorunda kalacak.", "Pilotlar kapıyı kapatmak zorunda değildi.", "Öğretmenler bir şey satın almak zorunda kalacak mı?", "Hiç kimse bilgisayara dokunmak zorunda kalmadı.", "Öğrenciler ödevi vermek zorunda mı?"],
-        "answers": ["Do the students have to count the money?", "Did someone have to open the door?", "The nurses don't have to repair the machine.", "Will everyone have to buy a ticket?", "Nobody had to sell the car.", "Did the police have to send someone?", "The pilots didn't have to fly the plane.", "Will the teachers have to teach everything?", "We didn't have to touch anything.", "Do I have to buy something?", "Will the students have to finish the book?", "Did someone have to count the money?", "Nobody will have to open the box.", "Did the nurses have to take blood?", "Did the police have to stop the traffic?", "Everyone will have to send a message.", "The pilots didn't have to close the door.", "Will the teachers have to buy something?", "Nobody had to touch the computer.", "Do the students have to give the homework?"]
-    },
-    "lesson7": {
-        "sentences": ["Parası yoktu ama çantayı aldı.", "Yolda buz vardı, bu yüzden arabalar durmak zorunda kaldı.", "Öğrenciler çalışmadı, bu yüzden sınavı bitiremediler.", "Kapıyı açmak zorundasın, yoksa giremeyiz.", "Pilot motoru kontrol etti ve uçağı uçurdu.", "Arabayı satacak mısın yoksa tamir edecek misin?", "Kimse kazayı görmedi ama herkes sesi duydu.", "Anahtarım yoktu, bu yüzden kapıyı açamadım.", "Doktorlar gelmek zorunda, yoksa hasta ölecek.", "Önce parayı sayarsın, sonra bileti verirsin.", "Hemşireler meşguldü ama kan alabildiler.", "Bir şey yemedik ve kimse su içmedi.", "Polis trafiği durdurdu, sonra ambulansı aradı.", "Öğrenciler dinlemek zorunda, yoksa öğrenemezler.", "Modemi tamir edebiliriz veya yenisini alabiliriz.", "Toplantıda kimse yoktu, bu yüzden beklemek zorunda kaldık.", "Öğretmen kitabı okudu ve soruyu sordu.", "Herkes gelmek zorunda mı, yoksa evde kalabilirler mi?", "Işık yoktu, bu yüzden bir şey göremedim.", "Şifreyi değiştirecekler ama bize söylemeyecekler."],
-        "answers": ["He had no money but he bought the bag.", "There was ice on the road, so the cars had to stop.", "The students didn't study, so they couldn't finish the exam.", "You have to open the door, or we cannot enter.", "The pilot controlled the engine and flew the plane.", "Will you sell the car or will you repair it?", "Nobody saw the accident but everyone heard the sound.", "I had no key, so I couldn't open the door.", "The doctors have to come, or the patient will die.", "First you count the money, then you give the ticket.", "The nurses were busy but they could take blood.", "We didn't eat anything and nobody drank water.", "The police stopped the traffic, then called the ambulance.", "The students have to listen, or they cannot learn.", "We can repair the modem or we can buy a new one.", "There was nobody at the meeting, so we had to wait.", "The teacher read the book and asked the question.", "Does everyone have to come, or can they stay at home?", "There was no light, so I couldn't see anything.", "They will change the password but they will not tell us."]
-    },
-    "lesson8": {
-        "sentences": ["Çantayı almalısın.", "Arabalar durmalıydı.", "Öğrenciler çalışmalı.", "Kapıyı açmamalısın.", "Pilot motoru kontrol etmeliydi.", "Arabayı tamir etmeli miyim?", "Herkes sesi duymalıydı.", "Anahtarı almalıydın.", "Doktor gelmeli.", "Parayı saymamalıydın.", "Hemşire kan almalı.", "Su içmeli miyiz?", "Polis ambulansı aramalıydı.", "Öğrenciler dinlemeli.", "Modemi değiştirmeliyiz.", "Toplantıda beklemeli miydik?", "Öğretmen kitabı okumalı.", "Kahvaltıyı iptal etmeli miyiz?", "Şifreyi söylememeliydin.", "Işığı görmelisin."],
-        "answers": ["You should buy the bag.", "The cars should have stopped.", "The students should study.", "You shouldn't open the door.", "The pilot should have controlled the engine.", "Should I repair the car?", "Everyone should have heard the sound.", "You should have taken the key.", "The doctor should come.", "You shouldn't have counted the money.", "The nurse should take blood.", "Should we drink water?", "The police should have called the ambulance.", "The students should listen.", "We should change the modem.", "Should we have waited at the meeting?", "The teacher should read the book.", "Should we cancel the breakfast?", "You shouldn't have told the password.", "You should see the light."]
-    },
-    "lesson9": {
-        "sentences": ["O güzel.", "Biz zengindik.", "Onlar aç olacaklar.", "Ben yorgunum.", "O hazır değil.", "Sen mutlu musun?", "Hava soğuktu.", "Onlar evde değildi.", "O hasta mıydı?", "Sen ünlü olacaksın.", "O geç kalmayacak.", "Yemek sıcak olacak mı?", "Araba hızlıdır.", "Arkadaşlarım meşgul değil.", "Bu zor mu?", "Film sıkıcıydı.", "Biz kızgın değildik.", "Sorular kolay mıydı?", "Hava güzel olacak.", "Yarın müsait olacak mısın?"],
-        "answers": ["She is beautiful.", "We were rich.", "They will be hungry.", "I am tired.", "He is not ready.", "Are you happy?", "The weather was cold.", "They were not at home.", "Was she sick?", "You will be famous.", "He will not be late.", "Will the food be hot?", "The car is fast.", "My friends are not busy.", "Is this difficult?", "The movie was boring.", "We were not angry.", "Were the questions easy?", "The weather will be nice.", "Will you be available tomorrow?"]
-    },
-    "lesson10a": {
-        "sentences": ["Bu kutu diğerinden daha büyük.", "Bu, evdeki en küçük oda.", "Kırmızı araba mavi arabadan daha pahalı.", "O, sınıftaki en çalışkan öğrenci.", "Ali, Ahmet kadar yaşlı.", "Çay çok sıcak.", "Çorba aşırı tuzlu.", "Film bayağı ilginçti.", "Uçak trenden daha hızlıdır.", "Çita en hızlı hayvandır.", "Sağlık paradan daha önemlidir.", "Bu en tehlikeli yol.", "Buz kar kadar soğuktur.", "Gitmek için çok geç.", "Bugün çok yorgunum.", "Odan oldukça temiz.", "Yaz kıştan daha sıcaktır.", "Bu koltuk daha rahat.", "O kasabadaki en zengin adam.", "Bu soru benim için fazla zor."],
-        "answers": ["This box is bigger than the other.", "This is the smallest room in the house.", "The red car is more expensive than the blue car.", "He is the most hardworking student in the class.", "Ali is as old as Ahmet.", "The tea is very hot.", "The soup is extremely salty.", "The movie was quite interesting.", "The plane is faster than the train.", "The cheetah is the fastest animal.", "Health is more important than money.", "This is the most dangerous road.", "Ice is as cold as snow.", "It is too late to go.", "I am very tired today.", "Your room is quite clean.", "Summer is hotter than winter.", "This seat is more comfortable.", "He is the richest man in that town.", "This question is too difficult for me."]
-    },
-    "lesson10b": {
-        "sentences": ["Yumurta sevmiyorum.", "Köpeğimi gezdiriyorum.", "Doktor kan testini inceliyor.", "Bankalar eski para kabul etmiyor.", "Şoför arabayı yıkıyor.", "Modemi açmıyorsunuz.", "Devlet interneti kontrol ediyor.", "Burada mı yaşıyorsunuz?", "Doktorlar kan almıyor.", "Pilot uçağı kontrol ediyor mu?", "Bu oteli tercih etmiyoruz.", "Partiye geliyorlar mı?", "Öğretmen projektörü hazırlıyor.", "Evde balık pişirmiyorlar."],
-        "answers": ["I don't like eggs.", "I am walking my dog.", "The doctor is examining the blood test.", "Banks are not accepting old money.", "The driver is washing the car.", "You are not turning on the modem.", "The state is controlling the internet.", "Do you live here?", "Doctors are not taking blood.", "Is the pilot controlling the plane?", "We don't prefer this hotel.", "Are they coming to the party?", "The teacher is preparing the projector.", "They are not cooking fish at home."]
-    },
-    "lesson11": {
-        "sentences": ["Bankacı parayı saymıştı.", "Şoför arabayı park ediyordu.", "Hemşire odayı temizlemişti.", "Öğrenci kitap aldı.", "Doktor hastayı arardı.", "Pilot uçağı kontrol etti.", "Öğretmenler sınavı hazırlıyordu.", "Polis trafiği durdurmuştu.", "Hemşire kan aldı.", "Öğrenciler defter getirirdi.", "Pilot motoru kontrol ediyordu.", "Teknisyen modemi tamir etmişti.", "Biz bu oteli tercih ederdik.", "Şoför arabayı yıkadı.", "Marketler eski para kabul ederdi.", "Öğrenciler öğretmeni dinliyordu.", "Sistem şifreyi değiştirmişti.", "Doktorlar kan testini inceledi.", "Hemşire kapıyı kilitliyordu.", "Öğretmen kitabı okumuştu."],
-        "answers": ["The banker had counted the money.", "The driver was parking the car.", "The nurse had cleaned the room.", "The student bought a book.", "The doctor used to call the patient.", "The pilot controlled the plane.", "The teachers were preparing the exam.", "The police had stopped the traffic.", "The nurse took blood.", "The students used to bring notebooks.", "The pilot was controlling the engine.", "The technician had repaired the modem.", "We used to prefer this hotel.", "The driver washed the car.", "Markets used to accept old money.", "The students were listening to the teacher.", "The system had changed the password.", "Doctors examined the blood test.", "The nurse was locking the door.", "The teacher had read the book."]
-    },
-    "lesson12": {
-        "sentences": ["Öğrenciler çalışmadıklarından dolayı sınavı bitiremediler.", "Her yerde buz olmasına rağmen pilot uçağı indirebildi.", "Hemşireyi aramadan önce doktor hastayı muayene etmişti.", "Öğrenciler kitapları aldıktan sonra öğretmen parayı saydı.", "Doktor geldiğinde hemşire odayı temizliyordu.", "Ambulans beklerken polis trafiği durduruyordu.", "Çok yorgun olduklarından dolayı doktorlar dinlenmek zorundalar.", "Zengin olmasına rağmen bankacı arabayı satmıştı.", "Derse girmeden önce öğrenciler beklemek zorundaydı.", "Uçuş bittikten sonra pilot uçağı park etti.", "Öğrenciler defterleri getirmediğinde öğretmen kızgındı.", "Öğretmen sınavı hazırlarken öğrenci kitap okuyordu.", "İnternet kötü olduğundan dolayı modemi tamir etmek zorundaydım.", "Yağmur yağmasına rağmen şoför arabayı yıkadı.", "Doktor gelmeden önce hemşireler ilacı vermişti.", "Sistem bozulduktan sonra şifreyi değiştirdik.", "Doktor onları aradığında hastalar bekliyordu.", "Doktorlar çalışırken polis hastaneyi aramalı.", "Hasta olduklarından dolayı soğuk su içmemeliler.", "Geç kalmasına rağmen pilot motoru kontrol etmişti."],
-        "answers": ["The students couldn't finish the exam because they didn't study.", "The pilot could land the plane although there was ice everywhere.", "The doctor had examined the patient before calling the nurse.", "The teacher counted the money after the students took the books.", "The nurse was cleaning the room when the doctor came.", "The police were stopping the traffic while waiting for the ambulance.", "The doctors have to rest because they are very tired.", "The banker had sold the car although he was rich.", "The students had to wait before entering the lesson.", "The pilot parked the plane after the flight finished.", "The teacher was angry when the students didn't bring the notebooks.", "The student was reading a book while the teacher was preparing the exam.", "I had to repair the modem because the internet was bad.", "The driver washed the car although it was raining.", "The nurses had given the medicine before the doctor came.", "We changed the password after the system broke down.", "The patients were waiting when the doctor called them.", "The police should call the hospital while the doctors are working.", "They shouldn't drink cold water because they are sick.", "The pilot had controlled the engine although he was late."]
-    },
-    "lesson13": {
-        "sentences": ["Geçen yıldan beri pilot uçağı kontrol etmemişti.", "Yoğun kanamaya rağmen doktor hastayı kurtarabildi.", "Kitabı okurken öğrenci hatayı bulabildi.", "Gece yarısında hemşire kapıyı kilitliyordu.", "Toplantıdan sonra avukat parayı saydı.", "Kötü internetten dolayı modemi tamir etmiştik.", "Dersten önce öğrenciler koridorda beklemek zorundaydı.", "On Beş Mayıs'ta polis şifreyi değiştirmişti.", "Akşama kadar doktorlar hasta muayene ederdi.", "Kışın bankacı arabayı satmadı.", "Trafiğe rağmen şoför dikkatli olmalıydı.", "Arabayı park ederken şoför radyoyu kapattı.", "Fırtınadan dolayı pilotlar uçuşu iptal etmek zorunda kaldı.", "Pazartesi günü doktorlar çalışmak zorundaydı.", "Ameliyattan sonra hemşire odayı temizlemişti.", "Cuma gününe kadar polis hastanede beklemişti.", "Saat beşte öğretmen ödev verdi.", "İki bin yirmi yılında bankalar eski para kabul etmeliydi.", "Sabah saatlerinden beri öğretmen sınavları hazırlamıştı."],
-        "answers": ["The pilot hadn't controlled the plane since last year.", "The doctor could save the patient despite heavy bleeding.", "The student could find the error while reading the book.", "The nurse was locking the door at midnight.", "The lawyer counted the money after the meeting.", "We had repaired the modem because of bad internet.", "The students had to wait in the corridor before the lesson.", "The police had changed the password on May 15th.", "Doctors used to examine patients until evening.", "The banker didn't sell the car in winter.", "The driver should have been careful despite the traffic.", "The driver turned off the radio while parking the car.", "The pilots had to cancel the flight because of the storm.", "Doctors had to work on Monday.", "The nurse had cleaned the room after the surgery.", "The police had waited at the hospital until Friday.", "The teacher gave homework at five o'clock.", "Banks should have accepted old money in 2020.", "The teacher had prepared the exams since morning hours."]
-    },
-    "lesson14": {
-        "sentences": ["Şoför arabayı hızlı bir şekilde park etti.", "Doktor kanı durdurarak hastayı kurtardı.", "Hemşire hastayla dostane bir şekilde konuştu.", "Öğretmen kitabı okuyarak hatayı buldu.", "Öğrenciler sorulara aptalca bir şekilde cevap verdi.", "Anahtarı kullanarak kapıyı açabilirsin.", "Öğretmen öğrencilere sert bir şekilde baktı.", "Bankacı parayı sessiz bir şekilde saydı.", "Bankacı müşteriyi arayarak problemi çözdü.", "Pilot motoru dikkatli bir şekilde kontrol etti.", "Hemşire ilacı vererek hastaya yardım etti.", "Polis trafiği ani bir şekilde durdurdu.", "Pilot radarı kontrol ederek uçağı indirdi.", "Doktor test sonuçlarını basit bir şekilde açıkladı.", "Polis arabada bekleyerek hırsızı yakaladı.", "Avukat arabayı zekice bir şekilde sattı.", "Şoför soğuk su kullanarak arabayı yıkadı.", "Öğrenci kapıyı yavaş bir şekilde kapattı.", "Sistemi yeniden başlatarak şifreyi değiştirdik."],
-        "answers": ["The driver parked the car quickly.", "The doctor saved the patient by stopping the bleeding.", "The nurse spoke with the patient in a friendly way.", "The teacher found the error by reading the book.", "The students answered the questions stupidly.", "You can open the door by using the key.", "The teacher looked at the students harshly.", "The banker counted the money silently.", "The banker solved the problem by calling the customer.", "The pilot controlled the engine carefully.", "The nurse helped the patient by giving the medicine.", "The police stopped the traffic suddenly.", "The pilot landed the plane by controlling the radar.", "The doctor explained the test results simply.", "The police caught the thief by waiting in the car.", "The lawyer sold the car cleverly.", "The driver washed the car by using cold water.", "The student closed the door slowly.", "We changed the password by restarting the system."]
-    },
-    "lesson15": {
-        "sentences": ["Sen interneti kullanabilesin diye şifreyi paylaşıyorum.", "Öğrenciler sınava çalışmak için kitap aldı.", "Doktor kan testini inceleyebilsin diye hemşire masayı temizledi.", "Şoför arabayı satmak için yıkadı.", "Öğrenci kitabı okuyabilsin diye öğretmen kitabı verdi.", "Polis ambulansa yardım etmek için trafiği durdurdu.", "Biz kapıyı açabilelim diye şoför anahtarları getirdi.", "Bankacı parayı saymak için işte kaldı.", "Ambulans hızlı varabilsin diye devlet trafiği kontrol ediyor.", "Pilot uçağı güvenli uçurmak için motoru kontrol etti.", "Avukat evi alabilsin diye bankacı parayı gönderecek.", "Doktor hemşireyle konuşmak için hastaneyi aradı.", "Öğretmen sınava başlayabilsin diye öğrenciler bekliyor.", "Avukat şifreyi değiştirmek için bilgisayarı kullandı.", "Teknisyen motoru tamir edebilsin diye pilot problemi açıkladı.", "İnterneti kullanmak için modemi tamir ettik.", "Hasta iyileşebilsin diye doktor ilaç yazdı.", "Öğretmen dersi hazırlamak için kitabı okudu.", "Şoför arabayı park edebilsin diye polis yolu açtı.", "Hemşire odayı temizlemek için kapıyı kilitledi."],
-        "answers": ["I am sharing the password so that you can use the internet.", "The students bought books in order to study for the exam.", "The nurse cleaned the table so that the doctor could examine the blood test.", "The driver washed the car in order to sell it.", "The teacher gave the book so that the student could read the book.", "The police stopped the traffic in order to help the ambulance.", "The driver brought the keys so that we could open the door.", "The banker stayed at work in order to count the money.", "The state is controlling the traffic so that the ambulance can arrive quickly.", "The pilot controlled the engine in order to fly the plane safely.", "The banker will send the money so that the lawyer can buy the house.", "The doctor called the hospital in order to speak with the nurse.", "The students are waiting so that the teacher can start the exam.", "The lawyer used the computer in order to change the password.", "The pilot explained the problem so that the technician could repair the engine.", "We repaired the modem in order to use the internet.", "The doctor wrote medicine so that the patient could get well.", "The teacher read the book in order to prepare the lesson.", "The police opened the road so that the driver could park the car.", "The nurse locked the door in order to clean the room."]
-    },
-    "lesson16": {
-        "sentences": ["Çok çalıştığından dolayı hemşire yoruluyor.", "Parayı kaybettiğinde avukat üzüldü.", "Arabayı sattıktan sonra bankacı zenginleşti.", "Hava soğuyor, bu yüzden pilot ceket giyiyor.", "Öğrenciler çalışmadığı için öğretmen sinirlendi.", "Bütün gün araba sürdüğünde şoför acıkır.", "Hastane soğuk olduğu için doktor hastalandı.", "Çok fazla yediğinden dolayı köpek şişmanlıyor.", "Sistem bozulduğunda patron epey çılgınlaştı.", "Beklerken polis susadı.", "Ders uzun olduğu için öğrenciler sıkılıyor.", "Hemşire ilacı verdikten sonra hasta iyileşti.", "Geç kalıyoruz, bu yüzden şoför hızlı sürüyor.", "Yağmur yağdığında araba kirlenir.", "Kumar oynadığı için adam fakirleşiyor.", "Sınava girmeden önce öğrenciler heyecanlanır.", "Ders başlamadan önce öğretmen hazırlandı.", "Hava kararıyor, bu yüzden pilot radarı kontrol ediyor.", "İnternet kötüleşiyor, bu yüzden modemi tamir etmeliyiz.", "Yıllarca çalıştıktan sonra doktor yaşlandı."],
-        "answers": ["The nurse is getting tired because she is working hard.", "The lawyer got sad when he lost the money.", "The banker got rich after he sold the car.", "The weather is getting cold, so the pilot is wearing a jacket.", "The teacher got angry because the students didn't study.", "The driver gets hungry when he drives all day.", "The doctor got sick because the hospital was cold.", "The dog is getting fat because he ate too much.", "The boss got quite crazy when the system broke down.", "The police officer got thirsty while waiting.", "The students are getting bored because the lesson is long.", "The patient got well after the nurse gave the medicine.", "We are getting late, so the driver is driving fast.", "The car gets dirty when it rains.", "The man is getting poor because he plays gamble.", "The students get excited before taking the exam.", "The teacher got prepared before the lesson started.", "The weather is getting dark, so the pilot is controlling the radar.", "The internet is getting bad, so we should repair the modem.", "The doctor got old after working for years."]
-    },
-    "lesson17": {
-        "sentences": ["Kimse avukatın arabayı neden sattığını anlayamadı.", "Onların partiye gelip gelmeyeceğini bilmiyorum.", "Onun arabasını değiştirdiğini öğrendik.", "Modemi nasıl açtıklarını öğreneceğiz.", "Hemşire, hastanın su isteyip istemediğini kontrol etti.", "Bankacının parayı nereye sakladığını bilmiyoruz.", "Öğrenciler sınavın ne zaman başlayacağını sordu.", "Teknisyenin modemi tamir edip edemeyeceğini göreceiz.", "Patron, şifreyi kimin değiştirdiğini öğrenmek istiyor.", "Pilotun uçağı indirip indiremeyeceğini merak ediyoruz.", "Hemşirenin hastaya ne verdiğini gördüm.", "Şoför, arabayı yıkayıp yıkamadığını hatırlamıyor.", "Öğretmen, öğrencilerin çalışmadığını biliyordu.", "Polis, şoförün kapıyı nasıl açtığını buldu.", "Doktor, hastanın ateşi olup olmadığını sordu.", "Onlar, öğretmenin ne soracağını tartışıyor.", "Bankaların eski para kabul edip etmediğinden emin değilim.", "Yumurta neden sevmediğini açıklayamadı.", "Öğrenciler öğretmenin ödev verip vermeyeceğini merak ediyor.", "Polis, patronun epey çılgın olduğunu gördü."],
-        "answers": ["Nobody could understand why the lawyer sold the car.", "I don't know whether they will come to the party or not.", "We learned that he changed his car.", "We will learn how they turned on the modem.", "The nurse checked whether the patient wanted water or not.", "We don't know where the banker hid the money.", "The students asked when the exam would start.", "We will see whether the technician can repair the modem or not.", "The boss wants to learn who changed the password.", "We wonder whether the pilot can land the plane or not.", "I saw what the nurse gave to the patient.", "The driver doesn't remember whether he washed the car or not.", "The teacher knew that the students didn't study.", "The police found how the driver opened the door.", "The doctor asked whether the patient had a fever or not.", "They are discussing what the teacher will ask.", "I am not sure whether banks accept old money or not.", "He couldn't explain why he didn't like eggs.", "The students wonder whether the teacher will give homework or not.", "The police saw that the boss was quite crazy."]
-    },
-    "lesson18": {
-        "sentences": ["Polis bankadan çalınan parayı buldu.", "Şoför uyuyan köpeği görmedi.", "Patron şoför tarafından yıkanan arabayı beğendi.", "Ağlayan öğrenci öğretmeni aradı.", "Hastanede bekleyen hastalar epey çılgınlaştı.", "Biz tamir edilen modemi kullanacağız.", "Doktor hemşire tarafından kilitlenen kapıyı açamadı.", "Muayene eden doktor bir soru sordu.", "Bankacı avukat tarafından satılan arabayı aldı.", "Bekleyen hastalar sinirlendi.", "Polis çalınan parayı buldu.", "Koridorda ağlayan öğrenci öğretmeni aradı.", "Patron yıkanan arabayı beğendi.", "Şoför yolda uyuyan köpeği görmedi.", "Hemşire kilitli kapıyı açamadı.", "Odada çalışan doktorlar telefona cevap vermedi.", "Avukat satılan arabayı sürdü.", "Kan testini inceleyen doktor bir soru sordu.", "Biz teknisyen tarafından tamir edilen modemi kullanacağız.", "Çalışan doktorlar telefona cevap vermedi."],
-        "answers": ["The police found the money stolen from the bank.", "The driver didn't see the sleeping dog.", "The boss liked the car washed by the driver.", "The crying student called the teacher.", "The patients waiting at the hospital got quite crazy.", "We will use the repaired modem.", "The doctor couldn't open the door locked by the nurse.", "The examining doctor asked a question.", "The banker bought the car sold by the lawyer.", "The waiting patients got angry.", "The police found the stolen money.", "The crying student in the corridor called the teacher.", "The boss liked the washed car.", "The driver didn't see the dog sleeping on the road.", "The nurse couldn't open the locked door.", "The doctors working in the room didn't answer the phone.", "The lawyer drove the sold car.", "The doctor examining the blood test asked a question.", "We will use the modem repaired by the technician.", "The working doctors didn't answer the phone."]
-    },
-    "lesson19": {
-        "sentences": ["Doktor sabahtan beri kan testini inceliyor.", "Şoförün arabayı buraya park etmesi yasak.", "Polis saatlerdir trafiği durduruyor mu?", "Hemşirenin erken çıkması serbestti.", "Bankacı haftalardır para saymıyor.", "Pilotun o havada uçağı uçurması yasaktı.", "Teknisyen dünden beri modemi tamir ediyor mu?", "Doktorun hastayı muayene etmesi serbest olacak.", "Öğrenciler aylardır kitap okumuyor.", "Bankacının o parayı alması yasak olacak.", "Hemşire iki saattir odayı temizliyor.", "Öğrencilerin koridorda beklemesi serbest.", "Avukat günlerdir arabasını satmaya çalışıyor mu?", "Köpeğin hastaneye girmesi yasak.", "Patron saatlerdir epey çılgın davranıyor.", "Polisin hastaneyi araması serbest miydi?", "Şoför günlerdir arabayı yıkamıyor.", "Avukatın şifreyi değiştirmesi serbest olacak mı?", "Pilot sabahtan beri uçağı kontrol ediyor.", "Öğretmenler o kitabı okuması serbestti."],
-        "answers": ["The doctor has been examining the blood test since morning.", "It is forbidden for the driver to park the car here.", "Has the police been stopping the traffic for hours?", "The nurse was free to leave early.", "The banker hasn't been counting money for weeks.", "It was forbidden for the pilot to fly the plane in that weather.", "Has the technician been repairing the modem since yesterday?", "The doctor will be free to examine the patient.", "The students haven't been reading books for months.", "It will be forbidden for the banker to take that money.", "The nurse has been cleaning the room for two hours.", "The students are free to wait in the corridor.", "Has the lawyer been trying to sell his car for days?", "It is forbidden for the dog to enter the hospital.", "The boss has been acting quite crazy for hours.", "Was the police free to call the hospital?", "The driver hasn't been washing the car for days.", "Will the lawyer be free to change the password?", "The pilot has been controlling the plane since morning.", "The teacher was free to read that book."]
-    }
+    "lesson1": [
+        ["They called a taxi", "They call a taxi", "They are call a taxi"],
+        ["Will you repair the modem?", "Do you repair the modem?", "Are you repair the modem?"],
+        ["She didn't close the door", "She didn't closed the door", "She doesn't close the door"],
+        ["I don't eat pizza", "I doesn't eat pizza", "I am not eat pizza"],
+        ["Do you count the money?", "Are you count the money?", "Does you count the money?"],
+        ["Will she repair the telephone?", "Do she repair the telephone?", "Does she repair the telephone?"],
+        ["Did they forget the keys?", "Did they forgot the keys?", "Were they forget the keys?"],
+        ["She won't open the lock", "She doesn't open the lock", "She not open the lock"],
+        ["We won't sell cars", "We aren't sell cars", "We don't sell cars"],
+        ["You won't bring food", "You don't bring food", "You aren't bring food"],
+        ["We examined the documents", "We examine the documents", "We are examine the documents"],
+        ["You count the students", "You are count the students", "You counting the students"],
+        ["Will she prepare breakfast?", "Do she prepare breakfast?", "Is she prepare breakfast?"],
+        ["The customer returned the shirt", "The customer return the shirt", "The customer was return the shirt"],
+        ["The pilot will check the plane", "The pilot checking the plane", "The pilot is check the plane"],
+        ["The nurse didn't take blood", "The nurse didn't took blood", "The nurse don't take blood"],
+        ["The manager counted the mistakes", "The manager count the mistakes", "The manager was count the mistakes"],
+        ["The police will stop the cars", "The police stopping the cars", "The police is stop the cars"],
+        ["They control the modem", "They are control the modem", "They controls the modem"],
+        ["Will we change the password?", "Do we change the password?", "Are we change the password?"]
+    ],
+    "lesson2": [
+        ["When did the pilot check the plane?", "When does the pilot check the plane?", "When did the pilot checked the plane?"],
+        ["How much money will you spend?", "How much money do you spend?", "How much money are you spend?"],
+        ["Where do you keep the key?", "Where are you keep the key?", "Where does you keep the key?"],
+        ["Why did she sell her car?", "Why did she sold her car?", "Why does she sell her car?"],
+        ["Whose boat will they rent?", "Whose boat do they rent?", "Whose boat are they rent?"],
+        ["How many mistakes did you find?", "How many mistakes did you found?", "How many mistakes were you find?"],
+        ["What did the doctor control?", "What did the doctor controlled?", "What does the doctor control?"],
+        ["Where did she park her car?", "Where did she parked her car?", "Where was she park her car?"],
+        ["What did you forget?", "What did you forgot?", "What were you forget?"],
+        ["How many customers called today?", "How many customers call today?", "How many customers did called today?"],
+        ["Why do the police stop the cars?", "Why are the police stop the cars?", "Why does the police stop the cars?"],
+        ["How much coffee do you drink?", "How much coffee are you drink?", "How much coffee did you drink?"],
+        ["How much sugar did she put?", "How much sugar does she put?", "How much sugar was she put?"],
+        ["Why will you change the password?", "Why do you change the password?", "Why are you change the password?"],
+        ["Whose password do you use?", "Whose password are you use?", "Whose password does you use?"]
+    ],
+    "lesson3": [
+        ["There isn't milk", "It isn't milk", "They isn't milk"],
+        ["We don't have money", "We aren't have money", "We doesn't have money"],
+        ["She won't have time", "She don't have time", "She hasn't time"],
+        ["There was (an) accident", "It was an accident", "They had an accident"],
+        ["There wasn't light", "It wasn't light", "There didn't light"],
+        ["There will be (a) meeting", "It will be a meeting", "They will have meeting"],
+        ["They had money", "They have money", "They was have money"],
+        ["Is there coffee?", "Is it coffee?", "Are there coffee?"],
+        ["Was there tea?", "Was it tea?", "Were there tea?"],
+        ["Will there be (a) meeting?", "Will it be a meeting?", "Do there be a meeting?"],
+        ["We have customers", "We having customers", "We are have customers"],
+        ["She had (a) car", "She has a car", "She did had a car"],
+        ["You won't have time", "You don't have time", "You aren't have time"],
+        ["You didn't have coffee", "You don't have coffee", "You wasn't have coffee"],
+        ["We had (a) problem", "We have a problem", "We did had a problem"],
+        ["There will be cars", "It will be cars", "There are will be cars"],
+        ["Do you have (a) car?", "Are you have a car?", "Have you a car?"],
+        ["She didn't have (a) house", "She doesn't have a house", "She wasn't have a house"]
+    ],
+    "lesson4": [
+        ["Did somebody call the ambulance?", "Was somebody call the ambulance?", "Did anybody call the ambulance?"],
+        ["We don't eat everything", "We aren't eat everything", "We doesn't eat everything"],
+        ["There was nobody in the meeting", "There was anybody in the meeting", "There wasn't nobody in the meeting"],
+        ["Is there somebody in the office?", "Are there somebody in the office?", "Is it somebody in the office?"],
+        ["We have nobody in New York", "We don't have nobody in New York", "We having nobody in New York"],
+        ["She learned everything", "She learn everything", "She was learn everything"],
+        ["There isn't (a) party anywhere", "There isn't a party somewhere", "It isn't a party anywhere"],
+        ["She had something in her back", "She has something in her back", "She did had something in her back"],
+        ["Everybody will learn the number", "All body will learn the number", "Everybody are learn the number"],
+        ["I trust nobody", "I don't trust nobody", "I am trust nobody"],
+        ["Somebody will change the lock", "Anybody will change the lock", "Somebody are change the lock"],
+        ["There was something in the document", "It was something in the document", "There had something in the document"],
+        ["Everybody will have (a) password", "Everybody are have a password", "Everybody will having a password"],
+        ["Did you eat something?", "Did you ate something?", "Was you eat something?"],
+        ["Nobody warned the students", "Anybody warned the students", "Nobody didn't warn the students"],
+        ["We parked the car somewhere", "We park the car somewhere", "We parked the car anywhere"],
+        ["She called nobody", "She didn't call nobody", "She call nobody"],
+        ["Do you have something in your mind?", "Are you have something in your mind?", "Have you something in your mind?"],
+        ["We didn't call everybody", "We wasn't call everybody", "We don't call everybody"],
+        ["Nobody will open the modem", "Anybody will open the modem", "Nobody don't open the modem"]
+    ],
+    "lesson5": [
+        ["Can the student count the money?", "Do the student count the money?", "Is the student count the money?"],
+        ["Could somebody open the door?", "Can somebody opened the door?", "Could to somebody open the door?"],
+        ["The nurse can't repair the machine.", "The nurse don't can repair the machine.", "The nurse couldn't repair the machine."],
+        ["Will everybody be able to buy tickets?", "Will everybody can to buy tickets?", "Do everybody be able to buy tickets?"],
+        ["Nobody can sell the car.", "Anybody can sell the car.", "Nobody don't can sell the car."],
+        ["Could the police send somebody?", "Can the police sended somebody?", "Could the police to send somebody?"],
+        ["The pilot couldn't fly the plane.", "The pilot didn't could fly the plane.", "The pilot wasn't fly the plane."],
+        ["Will the teacher be able to teach everything?", "Does the teacher be able to teach everything?", "Will the teacher can to teach everything?"],
+        ["We didn't touch anything.", "We didn't touched anything.", "We wasn't touch anything."],
+        ["Can I take something?", "Do I take something?", "Can to I take something?"],
+        ["Will the student be able to finish the book?", "Do the student be able to finish the book?", "Will the student can finish the book?"],
+        ["Could somebody count the money?", "Can somebody counted the money?", "Could to somebody count the money?"],
+        ["Nobody will be able to open the box.", "Anybody will be able to open the box.", "Nobody don't be able to open the box."],
+        ["Can the nurse take blood?", "Do the nurse take blood?", "Is the nurse take blood?"],
+        ["Could the police stop the traffic?", "Can the police stopped the traffic?", "Could the police to stop the traffic?"],
+        ["Everybody can send a message.", "Everybody can to send a message.", "All body can send a message."],
+        ["The pilot couldn't close the door.", "The pilot didn't could close the door.", "The pilot wasn't close the door."],
+        ["Will the teacher buy something?", "Do the teacher buy something?", "Is the teacher buy something?"],
+        ["Nobody can touch the computer.", "Anybody can touch the computer.", "Nobody don't can touch the computer."],
+        ["Will the student be able to give the homework?", "Do the student be able to give the homework?", "Will the student can to give the homework?"]
+    ]
+    // NEXT 5 LESSONS WILL GO HERE
 };
 
+// ==========================================
+// GAME LOGIC
+// ==========================================
 let currentLesson = "lesson1";
 let currentIndex = 0;
 let score = 0;
@@ -106,24 +133,18 @@ function init() {
 
 function loadQuestion() {
     const lesson = fullData[currentLesson];
-    const correct = lesson.answers[currentIndex];
+    const item = lesson[currentIndex];
+    
+    // item[0] is Correct, item[1] is Fake1, item[2] is Fake2
+    const correct = item[0];
     
     ui.feedback.textContent = "";
     ui.options.innerHTML = "";
-    ui.count.textContent = `Question ${currentIndex + 1} / ${lesson.sentences.length}`;
+    ui.count.textContent = `Question ${currentIndex + 1} / ${lesson.length}`;
     
-    // CHALLENGING LOGIC: 
-    // 1. Correct Answer
-    let choices = [correct];
+    let choices = [item[0], item[1], item[2]];
     
-    // 2. Pick 2 distractors from the SAME lesson to ensure they are difficult
-    let distractors = [...lesson.answers].filter(a => a !== correct);
-    
-    // Shuffle distractors and pick 2
-    distractors.sort(() => Math.random() - 0.5);
-    choices.push(distractors[0], distractors[1]);
-    
-    // 3. Final Shuffle for the buttons
+    // Shuffle the buttons so the correct answer isn't always in the same spot
     choices.sort(() => Math.random() - 0.5);
     
     choices.forEach(choice => {
@@ -136,28 +157,27 @@ function loadQuestion() {
 }
 
 function playAudio() {
-    // Correct root path
     ui.player.src = `${currentLesson}_${currentIndex}.mp3`;
-    ui.player.play().catch(e => console.log("User must interact to play."));
+    ui.player.play().catch(e => console.log("Press LISTEN to start audio."));
 }
 
 function checkAnswer(selected, correct) {
     if (selected === correct) {
         ui.feedback.textContent = "✅ Correct!";
-        ui.feedback.style.color = "green";
+        ui.feedback.style.color = "#27ae60";
         score += 10;
         ui.score.textContent = score;
         setTimeout(nextQuestion, 1200);
     } else {
         ui.feedback.textContent = "❌ Try Again!";
-        ui.feedback.style.color = "red";
-        playAudio();
+        ui.feedback.style.color = "#e74c3c";
+        playAudio(); 
     }
 }
 
 function nextQuestion() {
     currentIndex++;
-    if (currentIndex >= fullData[currentLesson].sentences.length) {
+    if (currentIndex >= fullData[currentLesson].length) {
         alert("Lesson Complete!");
         currentIndex = 0;
     }
