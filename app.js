@@ -447,19 +447,22 @@ const ui = {
     nextBtn: document.getElementById('next-lesson-btn')
 };
 
-// Bulletproof Map-Sort Shuffle (Zero Bias)
+// True Fisher-Yates Shuffle Algorithm (Mathematically Unbiased)
 function getShuffledArray(array) {
-    return array
-        .map(value => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
+    let shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
 }
 
 function init() {
     Object.keys(fullData).forEach(key => {
         const opt = document.createElement('option');
         opt.value = key;
-        opt.textContent = key.toUpperCase();
+        // FORMAT TEXT: "lesson10a" -> "Lesson 10a"
+        opt.textContent = key.replace('lesson', 'Lesson ');
         ui.select.appendChild(opt);
     });
     startLesson();
@@ -490,7 +493,7 @@ function loadQuestion() {
     ui.options.innerHTML = "";
     ui.count.textContent = `Question ${currentIndex + 1} / ${lesson.length}`;
     
-    // True-shuffle the 3 choices
+    // True-shuffle the 3 choices so the correct answer is completely random
     let rawChoices = [item[0], item[1], item[2]];
     let choices = getShuffledArray(rawChoices);
     
@@ -518,28 +521,32 @@ function checkAnswer(selected, correct, clickedBtn) {
         
         // 2. Auto-Highlight the correct option in Glowing Neon Green
         if (btn.textContent === correct) {
-            btn.style.backgroundColor = "rgba(57, 255, 20, 0.15)";
+            btn.style.backgroundColor = "#002b0f";
             btn.style.borderColor = "#39ff14";
-            btn.style.boxShadow = "0 0 15px rgba(57, 255, 20, 0.6)";
+            btn.style.boxShadow = "0 0 20px rgba(57, 255, 20, 0.8)";
             btn.style.color = "#ffffff";
+            btn.style.textShadow = "none";
         }
     });
 
     if (selected === correct) {
-        ui.feedback.textContent = "✅ Correct!";
+        ui.feedback.textContent = "✅ CORRECT!";
         ui.feedback.style.color = "#39ff14";
+        ui.feedback.style.textShadow = "0 0 10px rgba(57, 255, 20, 0.7)";
         score += 10;
         ui.score.textContent = score;
         setTimeout(nextQuestion, 1500); 
     } else {
-        ui.feedback.textContent = "❌ Incorrect!";
-        ui.feedback.style.color = "#ff003c";
+        ui.feedback.textContent = "❌ INCORRECT!";
+        ui.feedback.style.color = "#ff00ff";
+        ui.feedback.style.textShadow = "0 0 10px rgba(255, 0, 255, 0.7)";
         
-        // Highlight wrong choice in Glowing Neon Red
-        clickedBtn.style.backgroundColor = "rgba(255, 0, 60, 0.15)";
-        clickedBtn.style.borderColor = "#ff003c";
-        clickedBtn.style.boxShadow = "0 0 15px rgba(255, 0, 60, 0.6)";
+        // Highlight wrong choice in Glowing Neon Magenta
+        clickedBtn.style.backgroundColor = "#2b002b";
+        clickedBtn.style.borderColor = "#ff00ff";
+        clickedBtn.style.boxShadow = "0 0 20px rgba(255, 0, 255, 0.8)";
         clickedBtn.style.color = "#ffffff";
+        clickedBtn.style.textShadow = "none";
         
         setTimeout(nextQuestion, 3000); 
     }
@@ -564,15 +571,15 @@ function nextQuestion() {
 }
 
 function showCompletionModal() {
-    const formattedCurrent = currentLesson.replace('lesson', '').toUpperCase();
-    ui.modalTitle.textContent = `Lesson ${formattedCurrent} Finished!`;
+    const formattedCurrent = currentLesson.replace('lesson', 'Lesson ');
+    ui.modalTitle.textContent = `${formattedCurrent} Finished!`;
     
     const nextLessonKey = getNextLessonKey(currentLesson);
     
     if (fullData[nextLessonKey]) {
-        const formattedNext = nextLessonKey.replace('lesson', '').toUpperCase();
-        ui.modalText.textContent = `Are you ready for Lesson ${formattedNext}?`;
-        ui.nextBtn.textContent = `Start Lesson ${formattedNext} 🚀`;
+        const formattedNext = nextLessonKey.replace('lesson', 'Lesson ');
+        ui.modalText.textContent = `Are you ready for ${formattedNext}?`;
+        ui.nextBtn.textContent = `Start ${formattedNext} 🚀`;
         
         ui.nextBtn.onclick = () => {
             ui.select.value = nextLessonKey;
