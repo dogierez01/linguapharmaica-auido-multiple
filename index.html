@@ -3,134 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Practice App</title>
+    <title>English Listening Practice - Erez Academy</title>
     <style>
-        /* CSS: The Look of the App */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-
-        .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            width: 90%;
+        .app-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
             max-width: 500px;
             text-align: center;
         }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-
-        #lesson-title {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        #turkish-text {
-            font-size: 1.5rem;
-            color: #2980b9;
-            margin: 1.5rem 0;
-            min-height: 2rem;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .option-btn {
-            background-color: #ecf0f1;
-            border: 2px solid #bdc3c7;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: #34495e;
-        }
-
-        .option-btn:hover {
-            background-color: #3498db;
-            color: white;
-            border-color: #2980b9;
-        }
-
-        #feedback {
-            margin-top: 1.5rem;
-            font-weight: bold;
-            height: 1.5rem;
-        }
-
-        .stats {
-            margin-top: 2rem;
+        .top-bar {
             display: flex;
             justify-content: space-between;
+            margin-bottom: 30px;
             align-items: center;
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
         }
-
-        .controls {
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        select, button.control-btn {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        button.control-btn {
-            background-color: #2ecc71;
+        #listen-btn {
+            background-color: #2c3e50;
             color: white;
             border: none;
+            padding: 25px;
+            font-size: 1.4rem;
+            border-radius: 15px;
             cursor: pointer;
+            width: 100%;
+            margin-bottom: 40px;
+            transition: background 0.2s, transform 0.1s;
         }
-
-        button.control-btn:hover {
-            background-color: #27ae60;
+        #listen-btn:hover { background-color: #34495e; }
+        #listen-btn:active { transform: scale(0.98); }
+        
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .choice-btn {
+            background-color: #ffffff;
+            border: 2px solid #e0e0e0;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #444;
+            text-align: left;
+        }
+        .choice-btn:hover {
+            border-color: #3498db;
+            background-color: #f0f7ff;
+        }
+        #feedback-area {
+            margin-top: 25px;
+            font-weight: 600;
+            min-height: 30px;
+        }
+        .score-box {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 0.9rem;
+        }
+        .q-counter {
+            color: #999;
+            font-size: 0.8rem;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="controls">
-            <select id="lesson-select" onchange="changeLesson()"></select>
-            <button class="control-btn" onclick="playAudio()">🔊 Replay Audio</button>
+    <div class="app-container">
+        <div class="top-bar">
+            <select id="lesson-picker" onchange="changeLesson()"></select>
+            <div class="score-box">Score: <span id="score-val">0</span></div>
         </div>
 
-        <h1 id="lesson-title">English Practice</h1>
-        
-        <div id="turkish-text">Loading sentence...</div>
+        <button id="listen-btn" onclick="playAudio()">🔊 LISTEN</button>
 
-        <div id="options-container" class="options-grid"></div>
+        <div id="choices-grid" class="options-list"></div>
 
-        <div id="feedback"></div>
+        <div id="feedback-area"></div>
 
-        <div class="stats">
-            <div>Score: <span id="score">0</span></div>
-            <audio id="audio-player"></audio>
-        </div>
+        <div class="q-counter" id="q-counter">Question 1 / 20</div>
+        <audio id="audio-engine"></audio>
     </div>
 
     <script src="app.js"></script>
-
 </body>
 </html>
