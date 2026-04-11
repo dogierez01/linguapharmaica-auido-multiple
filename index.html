@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erez Academy - Listening Mastery</title>
     <style>
-        /* --- DARK THEME & NEON COLORS --- */
+        /* --- TRUE NEON DARK THEME --- */
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #0b0f19; /* Deep dark background */
+            background-color: #05050a; /* Pitch black/dark blue */
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -17,12 +17,12 @@
             margin: 0;
         }
         .app-container {
-            background: #151b2b; /* Slightly lighter dark card */
+            background: #0f111a; 
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.15); /* Cyan glow */
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            width: 100%;
+            border: 2px solid #00ffff; /* Neon Cyan Border */
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3); /* Cyan Glow */
+            width: 90%;
             max-width: 500px;
             text-align: center;
             position: relative;
@@ -34,38 +34,49 @@
             align-items: center;
         }
         
-        /* Neon Select Dropdown */
+        /* NEON YELLOW Select Dropdown */
         select {
-            padding: 10px;
+            padding: 10px 15px;
             border-radius: 8px;
-            border: 1px solid rgba(0, 255, 255, 0.5);
-            background: #0b0f19;
-            color: #00ffff;
+            border: 2px solid #e6ff00; /* Neon Yellow Border */
+            background: #05050a;
+            color: #e6ff00; /* Neon Yellow Text */
             font-weight: bold;
+            font-size: 1rem;
             outline: none;
+            box-shadow: 0 0 12px rgba(230, 255, 0, 0.3);
+            cursor: pointer;
+        }
+        select option {
+            background: #0f111a;
+            color: #e6ff00;
         }
 
-        /* Neon Listen Button */
+        /* NEON LISTEN BUTTON */
         #listen-btn {
             background-color: transparent;
-            color: #00ffff; /* Cyan text */
+            color: #00ffff;
             border: 2px solid #00ffff;
             padding: 25px;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: bold;
             border-radius: 15px;
             cursor: pointer;
             width: 100%;
             margin-bottom: 30px;
-            transition: all 0.2s;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), inset 0 0 10px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 8px #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         #listen-btn:hover { 
             background-color: #00ffff; 
             color: #000000;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8); 
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), inset 0 0 15px rgba(0, 255, 255, 0.8); 
+            text-shadow: none;
         }
-        #listen-btn:active { transform: scale(0.98); }
+        #listen-btn:active { transform: scale(0.96); }
         
         .options-list {
             display: flex;
@@ -73,62 +84,66 @@
             gap: 15px;
         }
 
-        /* Neon Choice Buttons */
+        /* NEON CHOICE BUTTONS */
         .choice-btn {
-            background-color: #1c2438;
-            border: 2px solid #2a3553;
+            background-color: #0f111a;
+            border: 2px solid #ff00ff; /* Neon Magenta */
             padding: 18px;
             border-radius: 12px;
             font-size: 1.1rem;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
-            color: #ffffff;
+            color: #ff00ff;
             text-align: left;
             width: 100%;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+            text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
         }
         .choice-btn:hover:not(:disabled) {
-            border-color: #ff00ff; /* Magenta glow on hover */
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
-            background-color: rgba(255, 0, 255, 0.05);
+            background-color: #ff00ff;
+            color: #000000;
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
+            text-shadow: none;
         }
 
         #feedback-area {
             margin-top: 25px;
-            font-weight: 600;
+            font-weight: 700;
             min-height: 30px;
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            font-size: 1.4rem;
         }
         .score-box {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #39ff14; /* Neon green */
-            text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
         }
         .q-counter {
-            color: #8892b0;
-            font-size: 0.8rem;
+            color: #00ffff;
+            font-size: 0.9rem;
             margin-top: 15px;
+            opacity: 0.7;
         }
 
-        /* --- DARK THEME CELEBRATION MODAL --- */
+        /* --- FIREWORKS CELEBRATION MODAL --- */
         .modal-overlay {
             display: none; 
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
         .modal-content {
-            background: #151b2b;
+            background: #0f111a;
             padding: 40px;
             border-radius: 20px;
             text-align: center;
-            border: 2px solid #ff00ff; /* Magenta border */
-            box-shadow: 0 0 40px rgba(255, 0, 255, 0.4);
+            border: 2px solid #39ff14; /* Neon Green Border */
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.5);
             animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             width: 90%;
             max-width: 400px;
@@ -147,33 +162,33 @@
             100% { transform: translateY(-15px); }
         }
         #modal-title { 
-            color: #00ffff; 
+            color: #39ff14; 
             margin-bottom: 10px; 
-            font-size: 1.8rem; 
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+            font-size: 2rem; 
+            text-shadow: 0 0 15px rgba(57, 255, 20, 0.6);
         }
         #modal-text { 
-            color: #c9d1d9; 
-            font-size: 1.1rem; 
+            color: #ffffff; 
+            font-size: 1.2rem; 
             margin-bottom: 25px; 
         }
         #next-lesson-btn {
             background-color: transparent;
-            color: #39ff14;
-            border: 2px solid #39ff14;
+            color: #00ffff;
+            border: 2px solid #00ffff;
             padding: 15px 30px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
             width: 100%;
         }
         #next-lesson-btn:hover { 
-            background-color: #39ff14; 
+            background-color: #00ffff; 
             color: #000;
-            box-shadow: 0 0 25px rgba(57, 255, 20, 0.8); 
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8); 
             transform: translateY(-2px); 
         }
     </style>
@@ -186,7 +201,7 @@
             <div class="score-box">Score: <span id="score-val">0</span></div>
         </div>
 
-        <button id="listen-btn" onclick="playAudio()">🔊 LISTEN</button>
+        <button id="listen-btn" onclick="playAudio()">🔊 LISTEN 🇹🇷</button>
 
         <div id="choices-grid" class="options-list"></div>
 
