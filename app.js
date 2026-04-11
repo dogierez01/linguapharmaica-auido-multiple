@@ -430,8 +430,9 @@ const fullData = {
 // GAME LOGIC
 // ==========================================
 let currentLesson = "lesson1";
-let currentIndex = 0;
+let currentIndex = 0; // Tracks progress through the randomized list
 let score = 0;
+let currentLessonOrder = []; // Will hold the shuffled indices
 
 const ui = {
     options: document.getElementById('choices-grid'),
@@ -442,6 +443,14 @@ const ui = {
     count: document.getElementById('q-counter')
 };
 
+// Fisher-Yates Shuffle algorithm for randomizing arrays
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 function init() {
     Object.keys(fullData).forEach(key => {
         const opt = document.createElement('option');
@@ -449,14 +458,33 @@ function init() {
         opt.textContent = key.toUpperCase();
         ui.select.appendChild(opt);
     });
+    
+    // Start the first lesson
+    startLesson();
+}
+
+function startLesson() {
+    currentIndex = 0;
+    score = 0;
+    ui.score.textContent = "0";
+    
+    // Create an array of indices [0, 1, 2 ... length-1] for the current lesson
+    const lessonLength = fullData[currentLesson].length;
+    currentLessonOrder = Array.from({length: lessonLength}, (_, i) => i);
+    
+    // Shuffle the indices so Deniz Dora gets a random order every time
+    shuffleArray(currentLessonOrder);
+    
     loadQuestion();
 }
 
 function loadQuestion() {
     const lesson = fullData[currentLesson];
-    const item = lesson[currentIndex];
     
-    // item[0] is Correct, item[1] is Fake1, item[2] is Fake2
+    // Use the shuffled index to get the actual question and keep it tied to the correct audio!
+    const originalIndex = currentLessonOrder[currentIndex];
+    const item = lesson[originalIndex];
+    
     const correct = item[0];
     
     ui.feedback.textContent = "";
@@ -464,53 +492,76 @@ function loadQuestion() {
     ui.count.textContent = `Question ${currentIndex + 1} / ${lesson.length}`;
     
     let choices = [item[0], item[1], item[2]];
-    
-    // Shuffle the buttons so the correct answer isn't always in the same spot
-    choices.sort(() => Math.random() - 0.5);
+    shuffleArray(choices); // Shuffle the 3 buttons
     
     choices.forEach(choice => {
         const btn = document.createElement('button');
         btn.className = "choice-btn";
         btn.textContent = choice;
-        btn.onclick = () => checkAnswer(choice, correct);
+        // Pass the clicked button element (e.target) to the check function
+        btn.onclick = (e) => checkAnswer(choice, correct, e.target);
         ui.options.appendChild(btn);
     });
 }
 
 function playAudio() {
-    ui.player.src = `${currentLesson}_${currentIndex}.mp3`;
+    // We MUST use the originalIndex to fetch the correct ElevenLabs audio file
+    const originalIndex = currentLessonOrder[currentIndex];
+    ui.player.src = `${currentLesson}_${originalIndex}.mp3`;
     ui.player.play().catch(e => console.log("Press LISTEN to start audio."));
 }
 
-function checkAnswer(selected, correct) {
+function checkAnswer(selected, correct, clickedBtn) {
+    // 1. Disable all buttons so he only gets ONE chance
+    const allBtns = document.querySelectorAll('.choice-btn');
+    allBtns.forEach(btn => {
+        btn.disabled = true;
+        btn.style.cursor = "default";
+        
+        // Automatically highlight the correct option in Green
+        if (btn.textContent === correct) {
+            btn.style.backgroundColor = "#27ae60"; // Green
+            btn.style.color = "white";
+            btn.style.borderColor = "#27ae60";
+        }
+    });
+
+    // 2. Check if Deniz Dora got it right or wrong
     if (selected === correct) {
         ui.feedback.textContent = "✅ Correct!";
         ui.feedback.style.color = "#27ae60";
         score += 10;
         ui.score.textContent = score;
-        setTimeout(nextQuestion, 1200);
+        
+        // Move to next question automatically after 1.5 seconds
+        setTimeout(nextQuestion, 1500);
     } else {
-        ui.feedback.textContent = "❌ Try Again!";
+        ui.feedback.textContent = "❌ Incorrect!";
         ui.feedback.style.color = "#e74c3c";
-        playAudio(); 
+        
+        // Highlight his wrong choice in Red
+        clickedBtn.style.backgroundColor = "#e74c3c"; // Red
+        clickedBtn.style.color = "white";
+        clickedBtn.style.borderColor = "#e74c3c";
+        
+        // Give him a bit more time (3 seconds) to study the correct green answer before moving on
+        setTimeout(nextQuestion, 3000);
     }
 }
 
 function nextQuestion() {
     currentIndex++;
     if (currentIndex >= fullData[currentLesson].length) {
-        alert("Lesson Complete!");
-        currentIndex = 0;
+        alert("Lesson Complete! Great job!");
+        startLesson(); // Restart the lesson with a brand new random order
+    } else {
+        loadQuestion();
     }
-    loadQuestion();
 }
 
 function changeLesson() {
     currentLesson = ui.select.value;
-    currentIndex = 0;
-    score = 0;
-    ui.score.textContent = "0";
-    loadQuestion();
+    startLesson();
 }
 
 init();
