@@ -4,44 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Practice App</title>
-    <link rel="stylesheet" href="style.css?v=3">
+    <style>
+        /* CSS: The Look of the App */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        #lesson-title {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #turkish-text {
+            font-size: 1.5rem;
+            color: #2980b9;
+            margin: 1.5rem 0;
+            min-height: 2rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .option-btn {
+            background-color: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #34495e;
+        }
+
+        .option-btn:hover {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        #feedback {
+            margin-top: 1.5rem;
+            font-weight: bold;
+            height: 1.5rem;
+        }
+
+        .stats {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .controls {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        select, button.control-btn {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button.control-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button.control-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <h1>English Practice <span style="font-size: 0.5em; color: #ff00ff; text-shadow: none;">v3.0 Neon</span></h1>
-            <div class="controls">
-                <select id="lesson-select">
-                    </select>
-                <div class="score-board">Score: <span id="score">0</span></div>
-            </div>
-        </header>
 
-        <main id="quiz-area">
-            <div class="question-header">
-                <h2 id="question-counter">Question 1 of X</h2>
-                <p>Listen to the Turkish phrase and select the correct English translation:</p>
-            </div>
+    <div class="container">
+        <div class="controls">
+            <select id="lesson-select" onchange="changeLesson()"></select>
+            <button class="control-btn" onclick="playAudio()">🔊 Replay Audio</button>
+        </div>
 
-            <div class="audio-section">
-                <button id="play-audio-btn" class="audio-btn">🔊 Play Turkish Audio</button>
-            </div>
+        <h1 id="lesson-title">English Practice</h1>
+        
+        <div id="turkish-text">Loading sentence...</div>
 
-            <div id="options-container" class="options-grid">
-                </div>
+        <div id="options-container" class="options-grid"></div>
 
-            <div class="action-section">
-                <button id="next-btn" class="next-btn hidden">Next Question ➡️</button>
-            </div>
-        </main>
+        <div id="feedback"></div>
 
-        <div id="completion-area" class="hidden">
-            <h2>🎉 Lesson Complete!</h2>
-            <p>Your final score is: <span id="final-score"></span></p>
-            <button id="restart-btn" class="restart-btn">Restart Lesson</button>
+        <div class="stats">
+            <div>Score: <span id="score">0</span></div>
+            <audio id="audio-player"></audio>
         </div>
     </div>
 
-    <script src="app.js?v=2"></script>
+    <script src="app.js"></script>
+
 </body>
 </html>
