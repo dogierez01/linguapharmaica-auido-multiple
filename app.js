@@ -16,7 +16,7 @@ const fullData = {
         "answers": ["Did someone call the ambulance?", "We don't eat everything.", "There was nobody at the meeting.", "Is there someone in the office?", "We have nobody in New York.", "He learned everything.", "There is no party anywhere.", "There was something on his back.", "Everyone will learn the number.", "I don't trust anyone.", "Someone will change the lock.", "There was something in the document.", "Everyone will have a password.", "Did you eat something?", "Nobody warned the students.", "We parked the car somewhere.", "He didn't call anyone.", "Is there something on your mind?", "We didn't call everyone.", "Nobody will turn on the modem."]
     },
     "lesson5": {
-        "sentences": ["Öğrenci parayı sayabilir mi?", "Biri kapıyı açabilir mi?", "Hemşire makineyi tamir edemez.", "Herkes bilet alabilecek mi?", "Hiç kimse arabayı satamaz.", "Polis birini gönderebilir mi?", "Pilot uçağı uçuramadı.", "Öğretmen her şeyi öğretebilecek mi?", "Hiçbir şeye dokunmadık.", "Bir şey alabilir miyim?", "Öğrenci kitabı bitirebilecek mi?", "Biri parayı sayabildi mi?", "Hiç kimse kutuyu açamayacak.", "Hemşire kan alabilir mi?", "Polis trafiği durdurabildi mi?", "Herkes mesaj gönderebilir.", "Pilot kapıyı kapatamadı.", "Öğretmen bir şey alacak mı?", "Hiç kimse bilgisayara dokunamaz.", "Öğrenci ödevi verebilecek mi?"],
+        "sentences": ["Öğrenci parayı sayabilir mi?", "Biri kapıyı açabilir mi?", "Hemşire makineyi tamir edemez.", "Herkes bilet alabilecek mi?", "Hiç kimse arabayı satamaz.", "Polis birini gönderebilir mi?", "Pilot uçağı uçuramadı.", "Öğretmen her şeyi öğretebilecek mi?", "Hiçbir şeye dokunmadık.", "Bir şey alabilir miyim?", "Öğrenci kitabı bitirebilecek mi?", "Biri parayı sayabildi mi?", "Hiç kimse kutuyu açamayacak.", "Hemşire kan alabilir mi?", "Polis trafiği durdurabildi mi?", "Herkes mesaj göndebilir.", "Pilot kapıyı kapatamadı.", "Öğretmen bir şey alacak mı?", "Hiç kimse bilgisayara dokunamaz.", "Öğrenci ödevi verebilecek mi?"],
         "answers": ["Can the student count the money?", "Can someone open the door?", "The nurse cannot repair the machine.", "Will everyone be able to buy a ticket?", "Nobody can sell the car.", "Can the police send someone?", "The pilot could not fly the plane.", "Will the teacher be able to teach everything?", "We didn't touch anything.", "Can I buy something?", "Will the student be able to finish the book?", "Could someone count the money?", "Nobody will be able to open the box.", "Can the nurse take blood?", "Could the police stop the traffic?", "Everyone can send a message.", "The pilot could not close the door.", "Will the teacher buy something?", "Nobody can touch the computer.", "Will the student be able to give the homework?"]
     },
     "lesson6": {
@@ -28,7 +28,7 @@ const fullData = {
         "answers": ["He had no money but he bought the bag.", "There was ice on the road, so the cars had to stop.", "The students didn't study, so they couldn't finish the exam.", "You have to open the door, or we cannot enter.", "The pilot controlled the engine and flew the plane.", "Will you sell the car or will you repair it?", "Nobody saw the accident but everyone heard the sound.", "I had no key, so I couldn't open the door.", "The doctors have to come, or the patient will die.", "First you count the money, then you give the ticket.", "The nurses were busy but they could take blood.", "We didn't eat anything and nobody drank water.", "The police stopped the traffic, then called the ambulance.", "The students have to listen, or they cannot learn.", "We can repair the modem or we can buy a new one.", "There was nobody at the meeting, so we had to wait.", "The teacher read the book and asked the question.", "Does everyone have to come, or can they stay at home?", "There was no light, so I couldn't see anything.", "They will change the password but they will not tell us."]
     },
     "lesson8": {
-        "sentences": ["Çantayı almalısın.", "Arabalar durmalıydı.", "Öğrenciler çalışmalı.", "Kapıyı açmamalısın.", "Pilot motoru kontrol etmeliydi.", "Arabayı tamir etmeli miyim?", "Herkes sesi duymalıydı.", "Anahtarı almalıydın.", "Doktor gelmeli.", "Parayı saymamalıydın.", "Hemşire kan almalı.", "Su içmeli miyiz?", "Polis ambulansı aramalıydı.", "Öğrenciler dinlemeli.", "Modemi değiştirmeliyiz.", "Toplantıda beklemeli miydik?", "Öğretmen kitabı okumalı.", "Kahvaltıyı iptal etmeli miyiz?", "Şifreyi söylememeliydin.", "Işığı görmelisin."],
+        "sentences": ["Çantayı almalısın.", "Arabalar durmalıydı.", "Öğrenciler çalışmalı.", "Kapıyı açmamalısın.", "Pilot motoru kontrol etmeliydi.", "Arabayı tamir etmeli miyim?", "Herkes sesi duymalıydı.", "Anahtarı almalıydın.", "Doktor gelmeli.", "Parayı saymamalıydın.", "Hemşire kan almalı.", "Su içmeli miyiz?", "Polis ambulansı aramalıydı.", "Öğrenciler dinmeli.", "Modemi değiştirmeliyiz.", "Toplantıda beklemeli miydik?", "Öğretmen kitabı okumalı.", "Kahvaltıyı iptal etmeli miyiz?", "Şifreyi söylememeliydin.", "Işığı görmelisin."],
         "answers": ["You should buy the bag.", "The cars should have stopped.", "The students should study.", "You shouldn't open the door.", "The pilot should have controlled the engine.", "Should I repair the car?", "Everyone should have heard the sound.", "You should have taken the key.", "The doctor should come.", "You shouldn't have counted the money.", "The nurse should take blood.", "Should we drink water?", "The police should have called the ambulance.", "The students should listen.", "We should change the modem.", "Should we have waited at the meeting?", "The teacher should read the book.", "Should we cancel the breakfast?", "You shouldn't have told the password.", "You should see the light."]
     },
     "lesson9": {
@@ -76,7 +76,7 @@ const fullData = {
         "answers": ["The police found the money stolen from the bank.", "The driver didn't see the sleeping dog.", "The boss liked the car washed by the driver.", "The crying student called the teacher.", "The patients waiting at the hospital got quite crazy.", "We will use the repaired modem.", "The doctor couldn't open the door locked by the nurse.", "The examining doctor asked a question.", "The banker bought the car sold by the lawyer.", "The waiting patients got angry.", "The police found the stolen money.", "The crying student in the corridor called the teacher.", "The boss liked the washed car.", "The driver didn't see the dog sleeping on the road.", "The nurse couldn't open the locked door.", "The doctors working in the room didn't answer the phone.", "The lawyer drove the sold car.", "The doctor examining the blood test asked a question.", "We will use the modem repaired by the technician.", "The working doctors didn't answer the phone."]
     },
     "lesson19": {
-        "sentences": ["Doktor sabahtan beri kan testini inceliyor.", "Şoförün arabayı buraya park etmesi yasak.", "Polis saatlerdir trafiği durduruyor mu?", "Hemşirenin erken çıkması serbestti.", "Bankacı haftalardır para saymıyor.", "Pilotun o havada uçağı uçurması yasaktı.", "Teknisyen dünden beri modemi tamir ediyor mu?", "Doktorun hastayı muayene etmesi serbest olacak.", "Öğrenciler aylardır kitap okumuyor.", "Bankacının o parayı alması yasak olacak.", "Hemşire iki saattir odayı temizliyor.", "Öğrencilerin koridorda beklemesi serbest.", "Avukat günlerdir arabasını satmaya çalışıyor mu?", "Köpeğin hastaneye girmesi yasak.", "Patron saatlerdir epey çılgın davranıyor.", "Polisin hastaneyi araması serbest miydi?", "Şoför günlerdir arabayı yıkamıyor.", "Avukatın şifreyi değiştirmesi serbest olacak mı?", "Pilot sabahtan beri uçağı kontrol ediyor.", "Öğretmenin o kitabı okumas serbestti."],
+        "sentences": ["Doktor sabahtan beri kan testini inceliyor.", "Şoförün arabayı buraya park etmesi yasak.", "Polis saatlerdir trafiği durduruyor mu?", "Hemşirenin erken çıkması serbestti.", "Bankacı haftalardır para saymıyor.", "Pilotun o havada uçağı uçurması yasaktı.", "Teknisyen dünden beri modemi tamir ediyor mu?", "Doktorun hastayı muayene etmesi serbest olacak.", "Öğrenciler aylardır kitap okumuyor.", "Bankacının o parayı alması yasak olacak.", "Hemşire iki saattir odayı temizliyor.", "Öğrencilerin koridorda beklemesi serbest.", "Avukat günlerdir arabasını satmaya çalışıyor mu?", "Köpeğin hastaneye girmesi yasak.", "Patron saatlerdir epey çılgın davranıyor.", "Polisin hastaneyi araması serbest miydi?", "Şoför günlerdir arabayı yıkamıyor.", "Avukatın şifreyi değiştirmesi serbest olacak mı?", "Pilot sabahtan beri uçağı kontrol ediyor.", "Öğretmenin o kitabı okuması serbestti."],
         "answers": ["The doctor has been examining the blood test since morning.", "It is forbidden for the driver to park the car here.", "Has the police been stopping the traffic for hours?", "The nurse was free to leave early.", "The banker hasn't been counting money for weeks.", "It was forbidden for the pilot to fly the plane in that weather.", "Has the technician been repairing the modem since yesterday?", "The doctor will be free to examine the patient.", "The students haven't been reading books for months.", "It will be forbidden for the banker to take that money.", "The nurse has been cleaning the room for two hours.", "The students are free to wait in the corridor.", "Has the lawyer been trying to sell his car for days?", "It is forbidden for the dog to enter the hospital.", "The boss has been acting quite crazy for hours.", "Was the police free to call the hospital?", "The driver hasn't been washing the car for days.", "Will the lawyer be free to change the password?", "The pilot has been controlling the plane since morning.", "The teacher was free to read that book."]
     }
 };
@@ -112,18 +112,16 @@ function loadQuestion() {
     ui.options.innerHTML = "";
     ui.count.textContent = `Question ${currentIndex + 1} / ${lesson.sentences.length}`;
     
-    // THE "CHALLENGING" LOGIC:
+    // CHALLENGING LOGIC: 
     // 1. Correct Answer
     let choices = [correct];
     
-    // 2. Filter out current answer to find real distractors from the SAME lesson
+    // 2. Pick 2 distractors from SAME lesson
     let distractors = [...lesson.answers].filter(a => a !== correct);
-    
-    // 3. Shuffle distractors and pick exactly 2
     distractors.sort(() => Math.random() - 0.5);
     choices.push(distractors[0], distractors[1]);
     
-    // 4. Shuffle the final 3 choices
+    // 3. Shuffle the final 3
     choices.sort(() => Math.random() - 0.5);
     
     choices.forEach(choice => {
@@ -133,13 +131,12 @@ function loadQuestion() {
         btn.onclick = () => checkAnswer(choice, correct);
         ui.options.appendChild(btn);
     });
-
-    playAudio();
 }
 
 function playAudio() {
-    ui.player.src = `audio/${currentLesson}_${currentIndex}.mp3`;
-    ui.player.play().catch(e => console.log("User must click Listen button."));
+    // UPDATED PATH: No folder prefix
+    ui.player.src = `${currentLesson}_${currentIndex}.mp3`;
+    ui.player.play().catch(e => console.log("User must interact to play."));
 }
 
 function checkAnswer(selected, correct) {
