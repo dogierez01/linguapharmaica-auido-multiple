@@ -440,14 +440,21 @@ const ui = {
     score: document.getElementById('score-val'),
     player: document.getElementById('audio-engine'),
     select: document.getElementById('lesson-picker'),
-    count: document.getElementById('q-counter')
+    count: document.getElementById('q-counter'),
+    // Modal Elements
+    modal: document.getElementById('celebration-modal'),
+    modalTitle: document.getElementById('modal-title'),
+    modalText: document.getElementById('modal-text'),
+    nextBtn: document.getElementById('next-lesson-btn')
 };
 
-// Fisher-Yates Shuffle algorithm for randomizing arrays
+// Robust Shuffle Algorithm (Double Shuffle to kill browser middle-bias)
 function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    for (let loop = 0; loop < 2; loop++) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
 }
 
@@ -459,7 +466,6 @@ function init() {
         ui.select.appendChild(opt);
     });
     
-    // Start the first lesson
     startLesson();
 }
 
@@ -467,12 +473,12 @@ function startLesson() {
     currentIndex = 0;
     score = 0;
     ui.score.textContent = "0";
+    if(ui.modal) ui.modal.style.display = "none"; // Hide fireworks modal if visible
     
-    // Create an array of indices [0, 1, 2 ... length-1] for the current lesson
     const lessonLength = fullData[currentLesson].length;
+    // Create an array of original indices [0, 1, 2, ..., 19]
     currentLessonOrder = Array.from({length: lessonLength}, (_, i) => i);
-    
-    // Shuffle the indices so Deniz Dora gets a random order every time
+    // Shuffle the indices so Deniz Dora gets a random order
     shuffleArray(currentLessonOrder);
     
     loadQuestion();
@@ -480,8 +486,7 @@ function startLesson() {
 
 function loadQuestion() {
     const lesson = fullData[currentLesson];
-    
-    // Use the shuffled index to get the actual question and keep it tied to the correct audio!
+    // Use the shuffled index to get the actual question and keep it tied to the audio
     const originalIndex = currentLessonOrder[currentIndex];
     const item = lesson[originalIndex];
     
@@ -492,13 +497,12 @@ function loadQuestion() {
     ui.count.textContent = `Question ${currentIndex + 1} / ${lesson.length}`;
     
     let choices = [item[0], item[1], item[2]];
-    shuffleArray(choices); // Shuffle the 3 buttons
+    shuffleArray(choices); // Double-shuffle the 3 buttons
     
     choices.forEach(choice => {
         const btn = document.createElement('button');
         btn.className = "choice-btn";
         btn.textContent = choice;
-        // Pass the clicked button element (e.target) to the check function
         btn.onclick = (e) => checkAnswer(choice, correct, e.target);
         ui.options.appendChild(btn);
     });
@@ -544,19 +548,55 @@ function checkAnswer(selected, correct, clickedBtn) {
         clickedBtn.style.color = "white";
         clickedBtn.style.borderColor = "#e74c3c";
         
-        // Give him a bit more time (3 seconds) to study the correct green answer before moving on
+        // Give him a bit more time (3 seconds) to study the correct green answer
         setTimeout(nextQuestion, 3000);
     }
+}
+
+// Logic to determine the next consecutive lesson
+function getNextLessonKey(currentKey) {
+    if (currentKey === "lesson10a") return "lesson10b";
+    if (currentKey === "lesson10b") return "lesson11";
+    
+    let num = parseInt(currentKey.replace("lesson", ""));
+    let nextNum = num + 1;
+    if (nextNum === 10) return "lesson10a"; // Route to 10a instead of 10
+    
+    return "lesson" + nextNum;
 }
 
 function nextQuestion() {
     currentIndex++;
     if (currentIndex >= fullData[currentLesson].length) {
-        alert("Lesson Complete! Great job!");
-        startLesson(); // Restart the lesson with a brand new random order
+        showCompletionModal();
     } else {
         loadQuestion();
     }
+}
+
+function showCompletionModal() {
+    const formattedCurrent = currentLesson.replace('lesson', '').toUpperCase();
+    ui.modalTitle.textContent = `Lesson ${formattedCurrent} Finished!`;
+    
+    const nextLessonKey = getNextLessonKey(currentLesson);
+    
+    if (fullData[nextLessonKey]) {
+        const formattedNext = nextLessonKey.replace('lesson', '').toUpperCase();
+        ui.modalText.textContent = `Are you ready for Lesson ${formattedNext}?`;
+        ui.nextBtn.textContent = `Start Lesson ${formattedNext} 🚀`;
+        
+        ui.nextBtn.onclick = () => {
+            ui.select.value = nextLessonKey;
+            currentLesson = nextLessonKey;
+            startLesson();
+        };
+        ui.nextBtn.style.display = "inline-block";
+    } else {
+        ui.modalText.textContent = "You have completed all available lessons. Amazing job!";
+        ui.nextBtn.style.display = "none";
+    }
+    
+    if(ui.modal) ui.modal.style.display = "flex"; // Show the fireworks modal
 }
 
 function changeLesson() {
@@ -564,4 +604,5 @@ function changeLesson() {
     startLesson();
 }
 
+// Start the app!
 init();
