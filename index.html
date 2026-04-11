@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erez Academy - Turkish Listening Mastery</title>
+    <title>Erez Academy - Listening Mastery</title>
     <style>
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #0b0c10; /* Deep dark background */
-            color: #c5c6c7;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,14 +15,14 @@
             margin: 0;
         }
         .app-container {
-            background: #1f2833; /* Slightly lighter dark container */
+            background: white;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 0 20px rgba(102, 252, 241, 0.15); /* Soft neon cyan glow */
-            border: 1px solid #45a29e;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 500px;
             text-align: center;
+            position: relative;
         }
         .top-bar {
             display: flex;
@@ -31,42 +30,20 @@
             margin-bottom: 30px;
             align-items: center;
         }
-        select {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #66fcf1;
-            background-color: #0b0c10;
-            color: #66fcf1;
-            font-size: 0.9rem;
-            outline: none;
-            cursor: pointer;
-        }
-        .score-box {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #66fcf1; /* Neon cyan */
-            text-shadow: 0 0 8px rgba(102, 252, 241, 0.6);
-        }
         #listen-btn {
-            background-color: transparent;
-            color: #66fcf1;
-            border: 2px solid #66fcf1;
-            padding: 20px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 25px;
+            font-size: 1.4rem;
             border-radius: 15px;
             cursor: pointer;
             width: 100%;
             margin-bottom: 30px;
             transition: all 0.2s;
-            box-shadow: 0 0 10px rgba(102, 252, 241, 0.3), inset 0 0 10px rgba(102, 252, 241, 0.3);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        #listen-btn:hover {
-            background-color: #66fcf1;
-            color: #0b0c10;
-            box-shadow: 0 0 20px rgba(102, 252, 241, 0.8);
-        }
+        #listen-btn:hover { background-color: #34495e; }
         #listen-btn:active { transform: scale(0.98); }
         
         .options-list {
@@ -75,43 +52,92 @@
             gap: 15px;
         }
         .choice-btn {
-            background-color: #0b0c10;
-            border: 2px solid #45a29e;
+            background-color: #ffffff;
+            border: 2px solid #e0e0e0;
             padding: 18px;
             border-radius: 12px;
             font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            color: #e0e2e4;
+            transition: all 0.2s ease;
+            color: #444;
             text-align: left;
             width: 100%;
         }
         .choice-btn:hover:not(:disabled) {
-            border-color: #66fcf1;
-            box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
-            transform: translateY(-2px);
+            border-color: #3498db;
+            background-color: #f0f7ff;
         }
-        .choice-btn:disabled {
-            cursor: not-allowed;
-        }
-        
         #feedback-area {
             margin-top: 25px;
+            font-weight: 600;
+            min-height: 30px;
+            font-size: 1.2rem;
+        }
+        .score-box {
             font-size: 1.2rem;
             font-weight: bold;
-            min-height: 30px;
+            color: #27ae60;
+        }
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
         }
         .q-counter {
-            color: #888;
-            font-size: 0.9rem;
+            color: #999;
+            font-size: 0.8rem;
             margin-top: 15px;
+        }
+
+        /* --- NEW MODAL CSS (FIREWORKS POP-UP) --- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            width: 90%;
+            max-width: 400px;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .fireworks {
+            font-size: 4rem;
             margin-bottom: 15px;
+            animation: bounce 1s infinite alternate;
         }
-        .footer-flag {
-            font-size: 2.5rem;
-            margin-top: 15px;
-            opacity: 0.9;
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
         }
+        #modal-title { color: #2c3e50; margin-bottom: 10px; font-size: 1.8rem; }
+        #modal-text { color: #7f8c8d; font-size: 1.1rem; margin-bottom: 25px; }
+        #next-lesson-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+            width: 100%;
+        }
+        #next-lesson-btn:hover { background-color: #219653; transform: translateY(-2px); }
     </style>
 </head>
 <body>
@@ -122,17 +148,23 @@
             <div class="score-box">Score: <span id="score-val">0</span></div>
         </div>
 
-        <button id="listen-btn" onclick="playAudio()">🔊 LISTEN TO TURKISH</button>
+        <button id="listen-btn" onclick="playAudio()">🔊 LISTEN</button>
 
         <div id="choices-grid" class="options-list"></div>
 
         <div id="feedback-area"></div>
 
         <div class="q-counter" id="q-counter">Question 1 / 20</div>
-        
-        <div class="footer-flag">🇹🇷</div>
-        
         <audio id="audio-engine"></audio>
+    </div>
+
+    <div id="celebration-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="fireworks">🎆🎉✨</div>
+            <h2 id="modal-title">Lesson Finished!</h2>
+            <p id="modal-text">Are you ready for the next one?</p>
+            <button id="next-lesson-btn">Start Next Lesson 🚀</button>
+        </div>
     </div>
 
     <script src="app.js"></script>
