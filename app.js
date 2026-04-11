@@ -430,9 +430,9 @@ const fullData = {
 // GAME LOGIC
 // ==========================================
 let currentLesson = "lesson1";
-let currentIndex = 0; // Tracks progress through the randomized list
+let currentIndex = 0; 
 let score = 0;
-let currentLessonOrder = []; // Will hold the shuffled indices
+let currentLessonOrder = []; 
 
 const ui = {
     options: document.getElementById('choices-grid'),
@@ -441,21 +441,18 @@ const ui = {
     player: document.getElementById('audio-engine'),
     select: document.getElementById('lesson-picker'),
     count: document.getElementById('q-counter'),
-    // Modal Elements
     modal: document.getElementById('celebration-modal'),
     modalTitle: document.getElementById('modal-title'),
     modalText: document.getElementById('modal-text'),
     nextBtn: document.getElementById('next-lesson-btn')
 };
 
-// Robust Shuffle Algorithm (Double Shuffle to kill browser middle-bias)
-function shuffleArray(array) {
-    for (let loop = 0; loop < 2; loop++) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-    }
+// Bulletproof Map-Sort Shuffle (Zero Bias)
+function getShuffledArray(array) {
+    return array
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
 }
 
 function init() {
@@ -465,7 +462,6 @@ function init() {
         opt.textContent = key.toUpperCase();
         ui.select.appendChild(opt);
     });
-    
     startLesson();
 }
 
@@ -473,20 +469,18 @@ function startLesson() {
     currentIndex = 0;
     score = 0;
     ui.score.textContent = "0";
-    if(ui.modal) ui.modal.style.display = "none"; // Hide fireworks modal if visible
+    if (ui.modal) ui.modal.style.display = "none"; 
     
     const lessonLength = fullData[currentLesson].length;
-    // Create an array of original indices [0, 1, 2, ..., 19]
-    currentLessonOrder = Array.from({length: lessonLength}, (_, i) => i);
-    // Shuffle the indices so Deniz Dora gets a random order
-    shuffleArray(currentLessonOrder);
+    // Create standard index array [0, 1, ... 19] then true-shuffle it
+    let rawOrder = Array.from({length: lessonLength}, (_, i) => i);
+    currentLessonOrder = getShuffledArray(rawOrder);
     
     loadQuestion();
 }
 
 function loadQuestion() {
     const lesson = fullData[currentLesson];
-    // Use the shuffled index to get the actual question and keep it tied to the audio
     const originalIndex = currentLessonOrder[currentIndex];
     const item = lesson[originalIndex];
     
@@ -496,8 +490,9 @@ function loadQuestion() {
     ui.options.innerHTML = "";
     ui.count.textContent = `Question ${currentIndex + 1} / ${lesson.length}`;
     
-    let choices = [item[0], item[1], item[2]];
-    shuffleArray(choices); // Double-shuffle the 3 buttons
+    // True-shuffle the 3 choices
+    let rawChoices = [item[0], item[1], item[2]];
+    let choices = getShuffledArray(rawChoices);
     
     choices.forEach(choice => {
         const btn = document.createElement('button');
@@ -509,59 +504,53 @@ function loadQuestion() {
 }
 
 function playAudio() {
-    // We MUST use the originalIndex to fetch the correct ElevenLabs audio file
     const originalIndex = currentLessonOrder[currentIndex];
     ui.player.src = `${currentLesson}_${originalIndex}.mp3`;
     ui.player.play().catch(e => console.log("Press LISTEN to start audio."));
 }
 
 function checkAnswer(selected, correct, clickedBtn) {
-    // 1. Disable all buttons so he only gets ONE chance
+    // 1. Lock all buttons
     const allBtns = document.querySelectorAll('.choice-btn');
     allBtns.forEach(btn => {
         btn.disabled = true;
         btn.style.cursor = "default";
         
-        // Automatically highlight the correct option in Green
+        // 2. Auto-Highlight the correct option in Glowing Neon Green
         if (btn.textContent === correct) {
-            btn.style.backgroundColor = "#27ae60"; // Green
-            btn.style.color = "white";
-            btn.style.borderColor = "#27ae60";
+            btn.style.backgroundColor = "rgba(57, 255, 20, 0.15)";
+            btn.style.borderColor = "#39ff14";
+            btn.style.boxShadow = "0 0 15px rgba(57, 255, 20, 0.6)";
+            btn.style.color = "#ffffff";
         }
     });
 
-    // 2. Check if Deniz Dora got it right or wrong
     if (selected === correct) {
         ui.feedback.textContent = "✅ Correct!";
-        ui.feedback.style.color = "#27ae60";
+        ui.feedback.style.color = "#39ff14";
         score += 10;
         ui.score.textContent = score;
-        
-        // Move to next question automatically after 1.5 seconds
-        setTimeout(nextQuestion, 1500);
+        setTimeout(nextQuestion, 1500); 
     } else {
         ui.feedback.textContent = "❌ Incorrect!";
-        ui.feedback.style.color = "#e74c3c";
+        ui.feedback.style.color = "#ff003c";
         
-        // Highlight his wrong choice in Red
-        clickedBtn.style.backgroundColor = "#e74c3c"; // Red
-        clickedBtn.style.color = "white";
-        clickedBtn.style.borderColor = "#e74c3c";
+        // Highlight wrong choice in Glowing Neon Red
+        clickedBtn.style.backgroundColor = "rgba(255, 0, 60, 0.15)";
+        clickedBtn.style.borderColor = "#ff003c";
+        clickedBtn.style.boxShadow = "0 0 15px rgba(255, 0, 60, 0.6)";
+        clickedBtn.style.color = "#ffffff";
         
-        // Give him a bit more time (3 seconds) to study the correct green answer
-        setTimeout(nextQuestion, 3000);
+        setTimeout(nextQuestion, 3000); 
     }
 }
 
-// Logic to determine the next consecutive lesson
 function getNextLessonKey(currentKey) {
     if (currentKey === "lesson10a") return "lesson10b";
     if (currentKey === "lesson10b") return "lesson11";
-    
     let num = parseInt(currentKey.replace("lesson", ""));
     let nextNum = num + 1;
-    if (nextNum === 10) return "lesson10a"; // Route to 10a instead of 10
-    
+    if (nextNum === 10) return "lesson10a"; 
     return "lesson" + nextNum;
 }
 
@@ -596,7 +585,7 @@ function showCompletionModal() {
         ui.nextBtn.style.display = "none";
     }
     
-    if(ui.modal) ui.modal.style.display = "flex"; // Show the fireworks modal
+    if (ui.modal) ui.modal.style.display = "flex"; 
 }
 
 function changeLesson() {
@@ -604,5 +593,4 @@ function changeLesson() {
     startLesson();
 }
 
-// Start the app!
 init();
