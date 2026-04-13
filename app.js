@@ -441,13 +441,14 @@ const ui = {
     player: document.getElementById('audio-engine'),
     select: document.getElementById('lesson-picker'),
     count: document.getElementById('q-counter'),
+    nextQBtn: document.getElementById('manual-next-btn'),
     modal: document.getElementById('celebration-modal'),
     modalTitle: document.getElementById('modal-title'),
     modalText: document.getElementById('modal-text'),
     nextBtn: document.getElementById('next-lesson-btn')
 };
 
-// True Fisher-Yates Shuffle Algorithm (Mathematically Unbiased)
+// True Fisher-Yates Shuffle Algorithm
 function getShuffledArray(array) {
     let shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -461,7 +462,7 @@ function init() {
     Object.keys(fullData).forEach(key => {
         const opt = document.createElement('option');
         opt.value = key;
-        // FORMAT TEXT: "lesson10a" -> "Lesson 10a"
+        // Format to "Lesson X"
         opt.textContent = key.replace('lesson', 'Lesson ');
         ui.select.appendChild(opt);
     });
@@ -475,7 +476,6 @@ function startLesson() {
     if (ui.modal) ui.modal.style.display = "none"; 
     
     const lessonLength = fullData[currentLesson].length;
-    // Create standard index array [0, 1, ... 19] then true-shuffle it
     let rawOrder = Array.from({length: lessonLength}, (_, i) => i);
     currentLessonOrder = getShuffledArray(rawOrder);
     
@@ -486,16 +486,29 @@ function loadQuestion() {
     const lesson = fullData[currentLesson];
     const originalIndex = currentLessonOrder[currentIndex];
     const item = lesson[originalIndex];
-    
     const correct = item[0];
     
+    // Reset UI for new question
     ui.feedback.textContent = "";
     ui.options.innerHTML = "";
     ui.count.textContent = `Question ${currentIndex + 1} / ${lesson.length}`;
+    ui.nextQBtn.style.display = "none"; // Hide manual next button
     
-    // True-shuffle the 3 choices so the correct answer is completely random
+    // Keep options invisible until "Listen" is clicked
+    ui.options.style.display = "none";
+    
+    // --- SMART FILTER (OPTION B) ---
     let rawChoices = [item[0], item[1], item[2]];
-    let choices = getShuffledArray(rawChoices);
+    let cleanChoices = rawChoices.filter(c => !c.toLowerCase().includes("isn't it"));
+    
+    // Failsafe: if both fake options were lazy, keep one but remove the lazy text
+    if (cleanChoices.length < 2) {
+        let salvagedOption = rawChoices[1].replace(/ isn't it\?/gi, "").trim();
+        cleanChoices.push(salvagedOption);
+    }
+    
+    // True-shuffle the cleaned choices
+    let choices = getShuffledArray(cleanChoices);
     
     choices.forEach(choice => {
         const btn = document.createElement('button');
@@ -510,16 +523,19 @@ function playAudio() {
     const originalIndex = currentLessonOrder[currentIndex];
     ui.player.src = `${currentLesson}_${originalIndex}.mp3`;
     ui.player.play().catch(e => console.log("Press LISTEN to start audio."));
+    
+    // Show the choices ONLY after hitting listen
+    ui.options.style.display = "flex"; 
 }
 
 function checkAnswer(selected, correct, clickedBtn) {
-    // 1. Lock all buttons
+    // Lock all buttons
     const allBtns = document.querySelectorAll('.choice-btn');
     allBtns.forEach(btn => {
         btn.disabled = true;
         btn.style.cursor = "default";
         
-        // 2. Auto-Highlight the correct option in Glowing Neon Green
+        // Auto-Highlight correct option in Glowing Neon Green
         if (btn.textContent === correct) {
             btn.style.backgroundColor = "#002b0f";
             btn.style.borderColor = "#39ff14";
@@ -535,6 +551,8 @@ function checkAnswer(selected, correct, clickedBtn) {
         ui.feedback.style.textShadow = "0 0 10px rgba(57, 255, 20, 0.7)";
         score += 10;
         ui.score.textContent = score;
+        
+        // Quick 1.5s automatic transition for correct answers
         setTimeout(nextQuestion, 1500); 
     } else {
         ui.feedback.textContent = "❌ INCORRECT!";
@@ -548,7 +566,8 @@ function checkAnswer(selected, correct, clickedBtn) {
         clickedBtn.style.color = "#ffffff";
         clickedBtn.style.textShadow = "none";
         
-        setTimeout(nextQuestion, 3000); 
+        // Cancel automatic transition, show manual "Next" button instead
+        ui.nextQBtn.style.display = "block";
     }
 }
 
